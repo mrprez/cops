@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<personnage name="COPS" version="1.0" gencrossVersion="1.14"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="http://mrprez.dyndns.org:8080/gencross-web/gencross-plugin.xsd">
+	<phase name="Création"/>
+	<phaseList>
+		<phase name="Création"/>
+		<phase name="En Service"/>
+	</phaseList>
+	<pointPools>
+		<pool name="Caractéristiques" remaining="14" total="14" toEmpty="true"/>
+		<pool name="Compétences" remaining="20" total="20" toEmpty="true"/>
+		<pool name="Stages" remaining="3" total="3" toEmpty="true"/>
+	</pointPools>
+	<properties>
+		<property editable="true" name="Nom">
+			<Value class="com.mrprez.gencross.value.StringValue"></Value>
+		</property>
+		<property editable="true" name="Prénom">
+			<Value class="com.mrprez.gencross.value.StringValue"></Value>
+		</property>
+		<property editable="true" name="Surnom">
+			<Value class="com.mrprez.gencross.value.StringValue"></Value>
+		</property>
+		<property editable="true" name="Grade">
+			<Value class="com.mrprez.gencross.value.IntValue">0</Value>
+		</property>
+		<property editable="false" name="Caracteristiques">
+			<propertiesList fixe="true" open="false">
+				<properties>
+					<property editable="true" name="Carrure">
+						<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue">5</Value>
+						</max>
+					</property>
+					<property editable="true" name="Charme">
+						<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue">5</Value>
+						</max>
+					</property>
+					<property editable="true" name="Coordination">
+						<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue">5</Value>
+						</max>
+					</property>
+					<property editable="true" name="Education">
+						<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue">5</Value>
+						</max>
+					</property>
+					<property editable="true" name="Perception">
+						<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue">5</Value>
+						</max>
+					</property>
+					<property editable="true" name="Réflexe">
+						<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue">5</Value>
+						</max>
+					</property>
+					<property editable="false" name="Init. min">
+						<Value class="com.mrprez.gencross.value.IntValue">1</Value>
+					</property>
+					<property editable="true" name="Sang froid">
+						<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue">5</Value>
+						</max>
+					</property>
+				</properties>
+			</propertiesList>
+			<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+				<pointPool>Caractéristiques</pointPool>
+				<args></args>
+			</historyFactory>
+		</property>
+		<property editable="false" name="Points de vie">
+			<Value class="com.mrprez.gencross.value.IntValue">4</Value>
+		</property>
+	</properties>
+	<beforeChangeValueListeners>
+	</beforeChangeValueListeners>
+	<afterChangeValueListeners>
+	</afterChangeValueListeners>
+	<beforeAddPropertyListeners>
+	</beforeAddPropertyListeners>
+	<afterAddPropertyListeners>
+	</afterAddPropertyListeners>
+	<beforeDeletePropertyListeners>
+	</beforeDeletePropertyListeners>
+	<afterDeletePropertyListeners>
+	</afterDeletePropertyListeners>
+	<passToNextPhaseListeners>
+	</passToNextPhaseListeners>
+	<formulas>
+		<formula>Points de vie=#Caracteristiques#Carrure# * 3 + 20</formula>
+		<formula>Caracteristiques#Init. min=3 - #Caracteristiques#Réflexe#</formula>
+	</formulas>
+	<history></history>
+</personnage>

@@ -21,5 +21,13 @@
 		<tag>HEAD</tag>
 	</scm>
 	
+	<repositories>
+		<repository>
+			<id>mrprez-repo</id>
+			<name>mrprez-repo</name>
+			<url>http://www.mrprez.fr/nexus/content/repositories/releases/</url>
+		</repository>
+	</repositories>
+	
 	
 </project>

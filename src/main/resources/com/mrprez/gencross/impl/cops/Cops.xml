@@ -239,6 +239,35 @@
 						<Value class="com.mrprez.gencross.value.IntValue">8</Value>
 						<propertiesList fixe="false" open="true">
 							<properties></properties>
+							<propertyChoice>
+								<property name="coups" editable="true">
+									<Value class="com.mrprez.gencross.value.IntValue">8</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue">7</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue">8</Value>
+									</max>
+								</property>
+								<property name="projections" editable="true">
+									<Value class="com.mrprez.gencross.value.IntValue">8</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue">7</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue">8</Value>
+									</max>
+								</property>
+								<property name="immobilisations" editable="true">
+									<Value class="com.mrprez.gencross.value.IntValue">8</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue">7</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue">8</Value>
+									</max>
+								</property>
+							</propertyChoice>
 							<defaultProperty>
 								<property name="" editable="true">
 									<Value class="com.mrprez.gencross.value.IntValue">8</Value>

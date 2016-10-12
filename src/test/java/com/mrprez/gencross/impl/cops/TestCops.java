@@ -30,15 +30,67 @@ public class TestCops {
 		
 		// Pass to phase "Compétences"
 		passToPhaseCompetence(personnage);
+		
+		// Compétences
+		fillCompetences(personnage);
+	}
+	
+	private void fillCompetences(Personnage personnage) throws Exception{
+		personnage.setNewValue("Compétences#Déguisement", 8);
+		Assert.assertEquals(8, personnage.getPointPools().get("Compétences").getRemaining());
+		
+		personnage.setNewValue("Compétences#Éloquence", 5);
+		Assert.assertEquals(6, personnage.getPointPools().get("Compétences").getRemaining());
+		
+		Property newConnaissance1 = personnage.getProperty("Compétences#Connaissance").getSubProperties().getDefaultProperty().clone();
+		newConnaissance1.setName("physique");
+		personnage.addPropertyToMotherProperty(newConnaissance1);
+		personnage.setNewValue("Compétences#Connaissance#physique", 8);
+		Assert.assertEquals(4, personnage.getPointPools().get("Compétences").getRemaining());
+		
+		Property newConnaissance2 = personnage.getProperty("Compétences#Connaissance").getSubProperties().getDefaultProperty().clone();
+		newConnaissance2.setName("chimie");
+		personnage.addPropertyToMotherProperty(newConnaissance2);
+		personnage.setNewValue("Compétences#Connaissance#chimie", 9);
+		Assert.assertEquals(3, personnage.getPointPools().get("Compétences").getRemaining());
+		
+		personnage.setNewValue("Compétences#Informatique", 6);
+		Assert.assertEquals(2, personnage.getPointPools().get("Compétences").getRemaining());
+		
+		Property newSpe = personnage.getProperty("Compétences#Informatique").getSubProperties().getDefaultProperty().clone();
+		newSpe.setName("piratage");
+		personnage.addPropertyToMotherProperty(newSpe);
+		personnage.setNewValue("Compétences#Informatique#piratage", 5);
+		Assert.assertEquals(1, personnage.getPointPools().get("Compétences").getRemaining());
+		
+		personnage.setNewValue("Compétences#Arme de Poing", 6);
+		Assert.assertTrue(personnage.phaseFinished());
 	}
 	
 	private void passToPhaseCompetence(Personnage personnage) throws Exception{
 		personnage.passToNextPhase();
 		Assert.assertEquals("Compétences", personnage.getPhase());
+		Assert.assertFalse(personnage.getProperty("Compétences#Arme Lourde").isEditable());
+		Assert.assertFalse(personnage.getProperty("Compétences#Arme Lourde").getSubProperties().isFixe());
+		Assert.assertTrue(personnage.getProperty("Compétences#Arme d’Épaule").isEditable());
+		Assert.assertTrue(personnage.getProperty("Compétences#Arme d’Épaule").getSubProperties().isFixe());
+		Assert.assertTrue(personnage.getProperty("Compétences#Déguisement").isEditable());
+		Assert.assertEquals(personnage.getProperty("Compétences#Éloquence").getMin().getInt(), 5);
+		Assert.assertEquals(personnage.getProperty("Compétences#Éloquence").getMax().getInt(), 7);
+		Assert.assertFalse(personnage.getProperty("Compétences#Conduite").isEditable());
+		Assert.assertEquals(personnage.getProperty("Compétences#Corps à Corps#projections").getMax().getInt(), 7);
+		Assert.assertEquals(personnage.getProperty("Compétences#Corps à Corps#projections").getMin().getInt(), 5);
+		Assert.assertEquals(personnage.getProperty("Compétences#Corps à Corps").getSubProperties().getDefaultProperty().getMin().getInt(), 6);
+		Assert.assertEquals(personnage.getProperty("Compétences#Corps à Corps").getSubProperties().getOptions().get("coups").getMin().getInt(), 6);
+		Assert.assertTrue(personnage.getProperty("Compétences#Informatique").getSubProperties().isFixe());
 	}
 	
 	private void fillBaseCompetence(Personnage personnage) throws Exception{
 		personnage.setNewValue("Compétences#Éloquence", 7);
+		Assert.assertEquals(1, personnage.getErrors().size());
+		personnage.setNewValue("Compétences#Intimidation", 8);
+		Assert.assertEquals(2, personnage.getErrors().size());
+		personnage.setNewValue("Compétences#Intimidation", 10);
 		Assert.assertEquals(1, personnage.getErrors().size());
 		Property newProperty = personnage.getProperty("Compétences#Corps à Corps").getSubProperties().getOptions().get("projections");
 		personnage.addPropertyToMotherProperty(newProperty);

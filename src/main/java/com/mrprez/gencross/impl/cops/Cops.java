@@ -2,6 +2,7 @@ package com.mrprez.gencross.impl.cops;
 
 import com.mrprez.gencross.Personnage;
 import com.mrprez.gencross.Property;
+import com.mrprez.gencross.history.ProportionalHistoryFactory;
 import com.mrprez.gencross.value.IntValue;
 import com.mrprez.gencross.value.Value;
 
@@ -33,49 +34,108 @@ public class Cops extends Personnage {
 		if(getPhase().equals("Compétences de bases")){
 			calculateBaseCompetences();
 		}
+		if(getPhase().equals("Compétences")){
+			calculateCompetences();
+		}
 	}
 	
+	private void calculateCompetences(){
+		int baseCompetenceCount = 0;
+		for(Property competence : getProperty("Compétences").getSubProperties()){
+			if(competence.getValue()!=null){
+				if(competence.getMax().getInt()<10){
+					baseCompetenceCount = baseCompetenceCount + competence.getMax().getInt() - competence.getValue().getInt();
+				}
+			}
+			if(competence.getSubProperties()!=null){
+				for(Property specialite : competence.getSubProperties()){
+					if(specialite.getMax().getInt()<10){
+						baseCompetenceCount = baseCompetenceCount + specialite.getMax().getInt() - specialite.getValue().getInt();
+					}
+				}
+			}
+		}
+		if(baseCompetenceCount>5){
+			errors.add("Vous ne pouvez dépenser plus de 5 points dans les compétences de bases");
+		}
+	}
 	
 	private void calculateBaseCompetences(){
 		int socialCompCount = 0;
-		for(String competence : BASE_SOCIAL_COMPETENCES){
-			if(getProperty("Compétences").getSubProperty(competence).getValue().getInt()==7){
+		int social7CompCount = 0;
+		for(String competenceName : BASE_SOCIAL_COMPETENCES){
+			Property competence = getProperty("Compétences").getSubProperty(competenceName);
+			if(competence.getValue().getInt()<10){
 				socialCompCount++;
 			}
-		}
-		if(socialCompCount!=1){
-			getErrors().add("Vous devez positionner une des compétences suivantes à 7: Éloquence, Intimidation ou Rhétorique");
-		}
-		
-		int cacCount = 0;
-		for(String specialite : BASE_CAC_SPE){
-			if(getProperty("Compétences#Corps à Corps").getSubProperty(specialite)!=null && getProperty("Compétences#Corps à Corps").getSubProperty(specialite).getValue().getInt()==7){
-				cacCount++;
+			if(competence.getValue().getInt()==7){
+				social7CompCount++;
 			}
 		}
-		if(cacCount!=1){
-			getErrors().add("Vous devez positionner une des spécialités de Corps à Corps suivantes à 7: coups, projections ou immobilisations");
+		if(socialCompCount!=1 || social7CompCount!=1){
+			getErrors().add("Vous devez positionner une et une seule des compétences suivantes à 7: Éloquence, Intimidation ou Rhétorique");
+		}
+		
+		int cac7Count = 0;
+		for(String specialite : BASE_CAC_SPE){
+			if(getProperty("Compétences#Corps à Corps").getSubProperty(specialite)!=null && getProperty("Compétences#Corps à Corps").getSubProperty(specialite).getValue().getInt()==7){
+				cac7Count++;
+			}
+		}
+		if(cac7Count!=1 || getProperty("Compétences#Corps à Corps").getSubProperties().size()!=1){
+			getErrors().add("Vous devez positionner une et une seule des spécialités de Corps à Corps suivantes à 7: coups, projections ou immobilisations");
 		}
 	}
 	
 	public void goToPhaseCompetence(){
+		// Compétences sociales
+		for(String competenceName : BASE_SOCIAL_COMPETENCES){
+			Property competence = getProperty("Compétences").getSubProperty(competenceName);
+			competence.setMax();
+			competence.setMin(new IntValue(competence.getValue().getInt()-2));
+		}
+		
+		// Spécialités de corps à corps
+		Property cacCompetence = getProperty("Compétences#Corps à Corps");
+		for(Property cacSpe : cacCompetence.getSubProperties()){
+			cacSpe.setMax();
+			cacSpe.setMin(new IntValue(cacSpe.getValue().getInt()-2));
+		}
+		for(Property cacSpe : cacCompetence.getSubProperties().getOptions().values()){
+			cacSpe.setMax();
+			cacSpe.setMin(new IntValue(cacSpe.getValue().getInt()-2));
+		}
+		Property cacSpe = cacCompetence.getSubProperties().getDefaultProperty();
+		cacSpe.setMin(new IntValue(cacSpe.getValue().getInt()-2));
+		
+		// Set competences editable
 		for(Property competence : getProperty("Compétences").getSubProperties()){
 			if(competence.getValue()!=null){
-				if(competence.getSubProperties()==null){
-					competence.setMin(new IntValue(competence.getValue().getInt() - 2));
-				} else {
-					int min = Math.max(
-							competence.getSubProperties().getDefaultProperty().getValue().getInt(),
-							competence.getValue().getInt() - 2);
-					competence.setMin(new IntValue(min));
-					if(competence.getValue().equals(competence.getSubProperties().getDefaultProperty().getValue())){
-						competence.getSubProperties().setFixe(false);
-					}
+				competence.setEditable(true);
+				if(competence.getSubProperties()!=null && competence.getValue().equals(competence.getSubProperties().getDefaultProperty().getValue())){
+					competence.setEditable(false);
+					competence.getSubProperties().setFixe(false);
 				}
 			}else{
 				competence.getSubProperties().setFixe(false);
 			}
 		}
+		
+		// Competence history factory
+		getProperty("Compétences").setHistoryFactory(new ProportionalHistoryFactory("Compétences", -1));
+		for(Property competence : getProperty("Compétences").getSubProperties()){
+			if(competence.getSubProperties()!=null){
+				int startValue = competence.getSubProperties().getDefaultProperty().getValue().getInt();
+				competence.getSubProperties().getDefaultProperty().setHistoryFactory(new ProportionalHistoryFactory("Compétences", -1, startValue));
+				for(Property spe : competence.getSubProperties()){
+					spe.setHistoryFactory(new ProportionalHistoryFactory("Compétences", -1, startValue));
+				}
+				for(Property spe : competence.getSubProperties().getOptions().values()){
+					spe.setHistoryFactory(new ProportionalHistoryFactory("Compétences", -1, startValue));
+				}
+			}
+		}
+		getPointPools().get("Compétences").setToEmpty(true);
 	}
 	
 }

@@ -7,10 +7,11 @@
 		<phase name="Caractéristiques" />
 		<phase name="Compétences de bases" />
 		<phase name="Compétences" />
+		<phase name="Historique" />
 	</phaseList>
 	<pointPools>
 		<pool name="Caractéristiques" remaining="14" total="14" toEmpty="true" />
-		<pool name="Compétences" remaining="20" total="20" toEmpty="false" />
+		<pool name="Compétences" remaining="10" total="10" toEmpty="false" />
 		<pool name="Stages" remaining="3" total="3" toEmpty="false" />
 	</pointPools>
 	<properties>

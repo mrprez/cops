@@ -12,6 +12,8 @@
 	<pointPools>
 		<pool name="Caractéristiques" remaining="14" total="14" toEmpty="true" />
 		<pool name="Compétences" remaining="10" total="10" toEmpty="false" />
+		<pool name="Relations" remaining="2" total="2" toEmpty="false" />
+		<pool name="Adrénaline/Ancienneté" remaining="2" total="2" toEmpty="false" />
 		<pool name="Stages" remaining="3" total="3" toEmpty="false" />
 	</pointPools>
 	<properties>
@@ -107,11 +109,21 @@
 		<property editable="false" name="Points de vie">
 			<Value class="com.mrprez.gencross.value.IntValue">26</Value>
 		</property>
-		<property editable="false" name="Point d'adrénaline">
+		<property editable="true" name="Point d'adrénaline">
 			<Value class="com.mrprez.gencross.value.IntValue">0</Value>
+			<min><Value class="com.mrprez.gencross.value.IntValue">0</Value></min>
+			<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+				<pointPool>Adrénaline/Ancienneté</pointPool>
+				<args></args>
+			</historyFactory>
 		</property>
-		<property editable="false" name="Point d'ancienneté">
+		<property editable="true" name="Point d'ancienneté">
 			<Value class="com.mrprez.gencross.value.IntValue">0</Value>
+			<min><Value class="com.mrprez.gencross.value.IntValue">0</Value></min>
+			<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+				<pointPool>Adrénaline/Ancienneté</pointPool>
+				<args></args>
+			</historyFactory>
 		</property>
 		<property editable="false" name="Compétences">
 			<propertiesList fixe="true" open="false">
@@ -480,7 +492,56 @@
 				</properties>
 			</propertiesList>
 		</property>
-
+		<property editable="false" name="Relations">
+			<propertiesList fixe="false" open="true">
+				<properties></properties>
+				<defaultProperty>
+					<property editable="true" name="">
+						<Value class="com.mrprez.gencross.value.IntValue">1</Value>
+						<propertiesList fixe="true" open="false">
+							<properties>
+								<property editable="true" name="Type">
+									<Value class="com.mrprez.gencross.value.StringValue">Informateur</Value>
+									<valueChoice>
+										<Value class="com.mrprez.gencross.value.StringValue">Informateur</Value>
+										<Value class="com.mrprez.gencross.value.StringValue">Allié</Value>
+									</valueChoice>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory"><pointPool></pointPool><args></args></historyFactory>
+								</property>
+								<property editable="true" name="Métier">
+									<Value class="com.mrprez.gencross.value.StringValue"></Value>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory"><pointPool></pointPool><args></args></historyFactory>
+								</property>
+								<property editable="false" name="Connaissances">
+									<propertiesList fixe="false" open="true">
+										<properties></properties>
+										<defaultProperty>
+											<property editable="true" name="">
+												<Value class="com.mrprez.gencross.value.IntValue">1</Value>
+											</property>
+										</defaultProperty>
+									</propertiesList>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory"><pointPool></pointPool><args></args></historyFactory>
+								</property>
+							</properties>
+						</propertiesList>
+						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+							<pointPool>Relations</pointPool>
+							<args></args>
+						</historyFactory>
+					</property>
+				</defaultProperty>
+			</propertiesList>
+		</property>
+		<property editable="false" name="Equipement">
+			<propertiesList open="true" fixe="false">
+				<properties></properties>
+				<defaultProperty>
+					<property editable="false" name=""></property>
+				</defaultProperty>
+			</propertiesList>
+		</property>
+		
 	</properties>
 	<beforeChangeValueListeners>
 	</beforeChangeValueListeners>

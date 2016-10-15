@@ -37,6 +37,26 @@ public class Cops extends Personnage {
 		if(getPhase().equals("Compétences")){
 			calculateCompetences();
 		}
+		if(getPhase().equals("Origine sociale")){
+			if(getProperty("Equipement").getSubProperties().size()!=1){
+				errors.add("Vous avez le droit à un et un seul équipement supplémentaire");
+			}
+		}
+		if(getPhase().equals("Relations supplémentaires")){
+			calculateRelation();
+		}
+	}
+	
+	private void calculateRelation(){
+		int relationOver4Nb = 0;
+		for(Property relation : getProperty("Relations").getSubProperties()){
+			if(relation.getValue().getInt()>=4){
+				relationOver4Nb++;
+			}
+		}
+		if(relationOver4Nb>2){
+			errors.add("Vous ne pouvez avoir plus de 2 relations au niveau 4");
+		}
 	}
 	
 	private void calculateCompetences(){
@@ -136,6 +156,40 @@ public class Cops extends Personnage {
 			}
 		}
 		getPointPools().get("Compétences").setToEmpty(true);
+	}
+	
+	public void goToPhaseOrigineSociale(){
+		getPointPools().get("Relations").add(2);
+	}
+	
+	public void goToPhaseEtude(){
+		for(Property competence : getProperty("Compétences").getSubProperties()){
+			if(competence.getValue()!=null){
+				competence.setMax();
+				competence.setMin(new IntValue(2));
+			}
+			if(competence.getSubProperties()!=null){
+				for(Property specialite : competence.getSubProperties()){
+					specialite.setMax();
+					specialite.setMin(new IntValue(2));
+				}
+				competence.getSubProperties().getDefaultProperty().setMin(new IntValue(2));
+				for(Property specialite : competence.getSubProperties().getOptions().values()){
+					specialite.setMin(new IntValue(2));
+				}
+			}
+		}
+		getPointPools().get("Compétences").add(2);
+		getPointPools().get("Relations").add(1);
+	}
+	
+	public void goToPhaseDevenirCops(){
+		getPointPools().get("Relations").add(2);
+		getPointPools().get("Adrénaline/Ancienneté").add(2);
+	}
+	
+	public void goToPhaseRelationSupplementaire(){
+		getPointPools().get("Relations").add(2);
 	}
 	
 }

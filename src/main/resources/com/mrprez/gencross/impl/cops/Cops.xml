@@ -7,12 +7,16 @@
 		<phase name="Caractéristiques" />
 		<phase name="Compétences de bases" />
 		<phase name="Compétences" />
-		<phase name="Historique" />
+		<phase name="Origine sociale" />
+		<phase name="Études" />
+		<phase name="Devenir COPS" />
+		<phase name="Relations supplémentaires" />
+		<phase name="Stages" />
 	</phaseList>
 	<pointPools>
 		<pool name="Caractéristiques" remaining="14" total="14" toEmpty="true" />
 		<pool name="Compétences" remaining="10" total="10" toEmpty="false" />
-		<pool name="Relations" remaining="2" total="2" toEmpty="false" />
+		<pool name="Relations" remaining="0" total="0" toEmpty="true" />
 		<pool name="Adrénaline/Ancienneté" remaining="2" total="2" toEmpty="false" />
 		<pool name="Stages" remaining="3" total="3" toEmpty="false" />
 	</pointPools>
@@ -498,6 +502,7 @@
 				<defaultProperty>
 					<property editable="true" name="">
 						<Value class="com.mrprez.gencross.value.IntValue">1</Value>
+						<min><Value class="com.mrprez.gencross.value.IntValue">1</Value></min>
 						<propertiesList fixe="true" open="false">
 							<properties>
 								<property editable="true" name="Type">
@@ -518,6 +523,7 @@
 										<defaultProperty>
 											<property editable="true" name="">
 												<Value class="com.mrprez.gencross.value.IntValue">1</Value>
+												<min><Value class="com.mrprez.gencross.value.IntValue">1</Value></min>
 											</property>
 										</defaultProperty>
 									</propertiesList>
@@ -531,6 +537,12 @@
 						</historyFactory>
 					</property>
 				</defaultProperty>
+			</propertiesList>
+		</property>
+		<property editable="false" name="Stages">
+			<propertiesList open="false" fixe="false">
+				<properties></properties>
+				<propertyChoice></propertyChoice>
 			</propertiesList>
 		</property>
 		<property editable="false" name="Equipement">
@@ -592,6 +604,22 @@
 		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
 			<phase>Compétences de bases</phase>
 			<arg name="method">goToPhaseCompetence</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
+			<phase>Compétences</phase>
+			<arg name="method">goToPhaseOrigineSociale</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
+			<phase>Origine sociale</phase>
+			<arg name="method">goToPhaseEtude</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
+			<phase>Études</phase>
+			<arg name="method">goToPhaseDevenirCops</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
+			<phase>Devenir COPS</phase>
+			<arg name="method">goToPhaseRelationSupplementaire</arg>
 		</listener>
 		
 	</passToNextPhaseListeners>

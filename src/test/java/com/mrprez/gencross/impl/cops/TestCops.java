@@ -120,12 +120,11 @@ public class TestCops {
 	private void fillCaracteristiques(Personnage personnage) throws Exception{
 		personnage.setNewValue("Caracteristiques#Carrure", 5);
 		personnage.setNewValue("Caracteristiques#Coordination", 5);
-		personnage.setNewValue("Caracteristiques#Réflexe", 5);
-		personnage.setNewValue("Caracteristiques#Charme", 5);
-		personnage.setNewValue("Caracteristiques#Coordination", 5);
-		personnage.setNewValue("Caracteristiques#Education", 4);
+		Assert.assertTrue(personnage.getErrors().contains("Vous ne pouvez avoir plus d'une Caractéristique à 5 à la création"));
+		personnage.setNewValue("Caracteristiques#Coordination", 4);
+		personnage.setNewValue("Caracteristiques#Réflexe", 4);
 		Assert.assertEquals(35, personnage.getProperty("Points de vie").getValue().getInt());
-		Assert.assertEquals(-2, personnage.getProperty("Caracteristiques#Init. min").getValue().getInt());
+		Assert.assertEquals(-1, personnage.getProperty("Caracteristiques#Init. min").getValue().getInt());
 		Assert.assertEquals(0, personnage.getPointPools().get("Caractéristiques").getRemaining());
 		Assert.assertTrue(personnage.phaseFinished());
 	}

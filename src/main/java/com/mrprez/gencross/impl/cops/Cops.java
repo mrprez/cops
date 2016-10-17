@@ -31,6 +31,9 @@ public class Cops extends Personnage {
 	@Override
 	public void calculate() {
 		super.calculate();
+		if(!getPhase().equals("En service")){
+			calculateCaracteristiques();
+		}
 		if(getPhase().equals("Compétences de bases")){
 			calculateBaseCompetences();
 		}
@@ -44,6 +47,18 @@ public class Cops extends Personnage {
 		}
 		if(getPhase().equals("Relations supplémentaires")){
 			calculateRelation();
+		}
+	}
+	
+	private void calculateCaracteristiques(){
+		int caracAt5Nb = 0;
+		for(Property carac : getProperty("Caracteristiques").getSubProperties()){
+			if(carac.getValue().getInt()>=5){
+				caracAt5Nb++;
+			}
+		}
+		if(caracAt5Nb>1){
+			errors.add("Vous ne pouvez avoir plus d'une Caractéristique à 5 à la création");
 		}
 	}
 	

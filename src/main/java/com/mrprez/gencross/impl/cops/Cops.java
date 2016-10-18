@@ -31,6 +31,8 @@ public class Cops extends Personnage {
 	@Override
 	public void calculate() {
 		super.calculate();
+		calculateLangues();
+		calculateTirRafale();
 		if(!getPhase().equals("En service")){
 			calculateCaracteristiques();
 		}
@@ -47,6 +49,30 @@ public class Cops extends Personnage {
 		}
 		if(getPhase().equals("Relations supplémentaires")){
 			calculateRelation();
+		}
+	}
+	
+	private void calculateTirRafale() {
+		for(Property specialite : getProperty("Compétences#Tir en Rafale").getSubProperties()){
+			Property tirComp = getProperty("Compétences").getSubProperty(specialite.getName());
+			int tirLevel = tirComp.getValue().getInt();
+			if(tirComp.getSubProperties()!=null){
+				for(Property tirSpe : tirComp.getSubProperties()){
+					if(tirSpe.getValue().getInt()<tirLevel){
+						tirLevel = tirSpe.getValue().getInt();
+					}
+				}
+			}
+			if(specialite.getValue().getInt()<tirLevel){
+				errors.add("Votre score de Tir en Rafale / "+specialite.getName()+" ne peut être inférieur votre score en "+specialite.getName());
+			}
+		}
+		
+	}
+
+	private void calculateLangues(){
+		if(getProperty("Caracteristiques#Education").getValue().getInt() != getProperty("Langues").getSubProperties().size()){
+			errors.add("Vous devez avoir autant de Langues que votre Caractéristique d'Education");
 		}
 	}
 	

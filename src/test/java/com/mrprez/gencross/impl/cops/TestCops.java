@@ -121,10 +121,23 @@ public class TestCops {
 		personnage.setNewValue("Caracteristiques#Carrure", 5);
 		personnage.setNewValue("Caracteristiques#Coordination", 5);
 		Assert.assertTrue(personnage.getErrors().contains("Vous ne pouvez avoir plus d'une Caractéristique à 5 à la création"));
-		personnage.setNewValue("Caracteristiques#Coordination", 4);
+		personnage.setNewValue("Caracteristiques#Coordination", 3);
 		personnage.setNewValue("Caracteristiques#Réflexe", 4);
 		Assert.assertEquals(35, personnage.getProperty("Points de vie").getValue().getInt());
 		Assert.assertEquals(-1, personnage.getProperty("Caracteristiques#Init. min").getValue().getInt());
+		
+		Assert.assertTrue(personnage.getErrors().contains("Vous devez avoir autant de Langues que votre Caractéristique d'Education"));
+		Property langue1 = personnage.getProperty("Langues").getSubProperties().getDefaultProperty().clone();
+		langue1.setName("Langue 1");
+		personnage.addPropertyToMotherProperty(langue1);
+		Assert.assertFalse(personnage.getErrors().contains("Vous devez avoir autant de Langues que votre Caractéristique d'Education"));
+		personnage.setNewValue("Caracteristiques#Education", 3);
+		Assert.assertTrue(personnage.getErrors().contains("Vous devez avoir autant de Langues que votre Caractéristique d'Education"));
+		Property langue2 = personnage.getProperty("Langues").getSubProperties().getDefaultProperty().clone();
+		langue2.setName("Langue 2");
+		personnage.addPropertyToMotherProperty(langue2);
+		Assert.assertFalse(personnage.getErrors().contains("Vous devez avoir autant de Langues que votre Caractéristique d'Education"));
+		
 		Assert.assertEquals(0, personnage.getPointPools().get("Caractéristiques").getRemaining());
 		Assert.assertTrue(personnage.phaseFinished());
 	}

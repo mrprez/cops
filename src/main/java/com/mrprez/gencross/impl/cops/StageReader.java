@@ -14,7 +14,9 @@ import com.mrprez.gencross.disk.PersonnageFactory;
 
 public class StageReader {
 	private static List<String> CARCACTERISTIQUES = Arrays.asList("Carrure", "Charme", "Coordination", "Education", "Perception", "Réflexe", "Sang froid");
-
+	private static List<Stage> stageList = new ArrayList<StageReader.Stage>();;
+	
+	
 	public static void main(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream("toto.html"), "UTF-8"));
 		try{
@@ -22,18 +24,53 @@ public class StageReader {
 			Stage stage = null;
 			while((line=reader.readLine())!=null){
 				if(line.startsWith("<h3>")){
+					if(stage!=null){
+						saveStage(stage);
+					}
 					stage = extractStageName(line);
 				} else if(line.contains("<p><b>Pré-requis</b>")){
-					extractRequirement(line, stage.getName());
+					stage.setRequirement(extractRequirement(line, stage.getName()));
 				} else if(line.startsWith("</p><p><b>Possibilité de cumul</b>&nbsp;: ")){
-					extractCumul(line);
+					stage.setCumul(extractCumul(line));
 				} else if(line.contains("</p><p>• ")){
-					System.out.println(line.substring(7));
+					stage.addCapacity(extractCapacite(line));
 				}
 			}
 		}finally {
 			reader.close();
 		}
+		
+		for(Stage stage1 : stageList){
+			for(Stage stage2 : stageList){
+				if(stage1!=stage2){
+					String name1 = (stage1.getName()+stage1.getLevel()).toLowerCase().replaceAll(" ", "");
+					String name2 = (stage2.getName()+stage2.getLevel()).toLowerCase().replaceAll(" ", "");
+					if(name1.equals(name2)){
+						System.err.println(stage1.getName()+" "+stage1.getLevel()+" <-> "+stage2.getName()+" "+stage2.getLevel());
+					}
+				}
+			}
+		}
+	}
+	
+	private static void saveStage(Stage stage) throws InterruptedException{
+		if(stage.cumul && stage.getCapacity().size()<=1){
+			System.err.println("Cumul issue: cumul=true, capacity nb="+stage.getCapacity().size());
+			Thread.sleep(100);
+		}
+		if(!stage.cumul && stage.getCapacity().size()>1){
+			System.err.println("Cumul issue: cumul=false, capacity nb="+stage.getCapacity().size());
+			Thread.sleep(100);
+		}
+		stageList.add(stage);
+	}
+	
+	private static String extractCapacite(String line){
+		String text = line.replaceFirst("</p><p>• ", "");
+		text = text.replaceAll("&nbsp;:", ":");
+		text = text.substring(0, text.indexOf(":")).trim();
+		System.out.println("\t- "+text);
+		return text;
 	}
 	
 	private static boolean extractCumul(String line){
@@ -55,7 +92,7 @@ public class StageReader {
 		String name = text.substring(0, text.indexOf("Niveau")).trim();
 		int level = Integer.parseInt(text.substring(text.indexOf("Niveau ")+7, text.indexOf("Niveau ")+8));
 		String surname = text.substring(text.indexOf(" – ")+3).replaceAll("[«»]", "").replaceAll("&nbsp;", " ").replaceAll("&amp;", "&").trim();
-		System.out.println(name+" Niveau "+level+" - "+surname);
+		System.out.println("\n"+name+" Niveau "+level+" - "+surname);
 		return new Stage(name, level, surname);
 	}
 	
@@ -125,7 +162,7 @@ public class StageReader {
 		private String surname;
 		private int level;
 		private boolean cumul;
-		private List<String> capacity = new ArrayList<String>();
+		private List<String> capacities = new ArrayList<String>();
 		private Map<String,Integer> requirement = new HashMap<String, Integer>();
 		
 		public Stage(String name, int level, String surname) {
@@ -135,11 +172,41 @@ public class StageReader {
 			this.surname = surname;
 		}
 
+		public void addCapacity(String capacity) {
+			capacities.add(capacity);
+		}
+
 		public String getName() {
 			return name;
 		}
-		
-		
+
+		public boolean isCumul() {
+			return cumul;
+		}
+
+		public void setCumul(boolean cumul) {
+			this.cumul = cumul;
+		}
+
+		public List<String> getCapacity() {
+			return capacities;
+		}
+
+		public Map<String, Integer> getRequirement() {
+			return requirement;
+		}
+
+		public void setRequirement(Map<String, Integer> requirement) {
+			this.requirement = requirement;
+		}
+
+		public String getSurname() {
+			return surname;
+		}
+
+		public int getLevel() {
+			return level;
+		}
 		
 	}
 

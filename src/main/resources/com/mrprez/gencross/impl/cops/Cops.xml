@@ -114,7 +114,7 @@
 		<property editable="false" name="Points de vie">
 			<Value class="com.mrprez.gencross.value.IntValue">26</Value>
 		</property>
-		<property editable="true" name="Point d'adrénaline">
+		<property editable="true" name="Points d'adrénaline">
 			<Value class="com.mrprez.gencross.value.IntValue">0</Value>
 			<min><Value class="com.mrprez.gencross.value.IntValue">0</Value></min>
 			<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
@@ -122,7 +122,7 @@
 				<args></args>
 			</historyFactory>
 		</property>
-		<property editable="true" name="Point d'ancienneté">
+		<property editable="true" name="Points d'ancienneté">
 			<Value class="com.mrprez.gencross.value.IntValue">0</Value>
 			<min><Value class="com.mrprez.gencross.value.IntValue">0</Value></min>
 			<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">

@@ -10,16 +10,23 @@ import java.util.List;
 import java.util.Map;
 
 import com.mrprez.gencross.Personnage;
+import com.mrprez.gencross.Property;
 import com.mrprez.gencross.disk.PersonnageFactory;
+import com.mrprez.gencross.disk.PersonnageSaver;
+import com.mrprez.gencross.history.ConstantHistoryFactory;
+import com.mrprez.gencross.history.ProportionalHistoryFactory;
+import com.mrprez.gencross.value.IntValue;
 
 public class StageReader {
 	private static List<String> CARCACTERISTIQUES = Arrays.asList("Carrure", "Charme", "Coordination", "Education", "Perception", "Réflexe", "Sang froid");
 	private static List<Stage> stageList = new ArrayList<StageReader.Stage>();;
+	private static Personnage personnage;
 	
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream("toto.html"), "UTF-8"));
 		try{
+			personnage = new PersonnageFactory().buildNewPersonnage("COPS");
 			String line;
 			Stage stage = null;
 			while((line=reader.readLine())!=null){
@@ -51,18 +58,40 @@ public class StageReader {
 				}
 			}
 		}
+		
+		PersonnageSaver.savePersonnage(personnage, System.out);
 	}
 	
 	private static void saveStage(Stage stage) throws InterruptedException{
-		if(stage.cumul && stage.getCapacity().size()<=1){
-			System.err.println("Cumul issue: cumul=true, capacity nb="+stage.getCapacity().size());
+		if(stage.cumul && stage.getCapacities().size()<=1){
+			System.err.println("Cumul issue: cumul=true, capacity nb="+stage.getCapacities().size());
 			Thread.sleep(100);
 		}
-		if(!stage.cumul && stage.getCapacity().size()>1){
-			System.err.println("Cumul issue: cumul=false, capacity nb="+stage.getCapacity().size());
+		if(!stage.cumul && stage.getCapacities().size()>1){
+			System.err.println("Cumul issue: cumul=false, capacity nb="+stage.getCapacities().size());
 			Thread.sleep(100);
 		}
 		stageList.add(stage);
+		if(stage.isCumul() && stage.getCapacities().size()>1){
+			for(String capacity : stage.getCapacities()){
+				Property property = new Property(stage.getName()+" Niv. "+stage.getLevel(), personnage);
+				property.setEditable(false);
+				property.setSpecification(capacity);
+				property.setHistoryFactory(new ConstantHistoryFactory("Stages", 5*stage.getLevel()+5));
+				personnage.getProperty("Stages").getSubProperties().addOptionProperty(property);
+			}
+		} else if(stage.isCumul()){
+			Property property = new Property(stage.getName()+" Niv. "+stage.getLevel(), personnage);
+			property.setValue(new IntValue(1));
+			property.setMin(new IntValue(1));
+			property.setHistoryFactory(new ProportionalHistoryFactory("Stages", 5*stage.getLevel()+5));
+			personnage.getProperty("Stages").getSubProperties().addOptionProperty(property);
+		} else {
+			Property property = new Property(stage.getName()+" Niv. "+stage.getLevel(), personnage);
+			property.setEditable(false);
+			property.setHistoryFactory(new ConstantHistoryFactory("Stages", 5*stage.getLevel()+5));
+			personnage.getProperty("Stages").getSubProperties().addOptionProperty(property);
+		}
 	}
 	
 	private static String extractCapacite(String line){
@@ -98,7 +127,6 @@ public class StageReader {
 	
 	private static Map<String, Integer> extractRequirement(String line, String stageName) throws IOException, Exception{
 		Map<String, Integer> requirement = new HashMap<String, Integer>();
-		Personnage personnage = new PersonnageFactory().buildNewPersonnage("COPS");
 		
 		line = line.replace("</p>", "").replace("<p><b>Pré-requis</b>&nbsp;:", "").trim();
 		if(line.isEmpty()){
@@ -188,7 +216,7 @@ public class StageReader {
 			this.cumul = cumul;
 		}
 
-		public List<String> getCapacity() {
+		public List<String> getCapacities() {
 			return capacities;
 		}
 

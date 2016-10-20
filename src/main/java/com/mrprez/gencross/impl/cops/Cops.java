@@ -35,6 +35,7 @@ public class Cops extends Personnage {
 		calculateTirRafale();
 		if(!getPhase().equals("En service")){
 			calculateCaracteristiques();
+			limiteStageLevel();
 		}
 		if(getPhase().equals("Compétences de bases")){
 			calculateBaseCompetences();
@@ -52,6 +53,14 @@ public class Cops extends Personnage {
 		}
 	}
 	
+	private void limiteStageLevel() {
+		for(Property stage : getProperty("Stages").getSubProperties()){
+			if(stage.getName().charAt(stage.getName().length()-1)!='1'){
+				errors.add("A la création, vous ne pouvez pas avoir de stage de niveau 2 ou 3");
+			}
+		}
+	}
+
 	private void calculateTirRafale() {
 		for(Property specialite : getProperty("Compétences#Tir en Rafale").getSubProperties()){
 			Property tirComp = getProperty("Compétences").getSubProperty(specialite.getName());
@@ -231,6 +240,10 @@ public class Cops extends Personnage {
 	
 	public void goToPhaseRelationSupplementaire(){
 		getPointPools().get("Relations").add(2);
+	}
+	
+	public void goToPhaseStage(){
+		getPointPools().get("Stages").setToEmpty(true);
 	}
 	
 }

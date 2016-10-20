@@ -19,7 +19,7 @@
 		<pool name="Compétences" remaining="10" total="10" toEmpty="false" />
 		<pool name="Relations" remaining="0" total="0" toEmpty="true" />
 		<pool name="Adrénaline/Ancienneté" remaining="2" total="2" toEmpty="false" />
-		<pool name="Stages" remaining="3" total="3" toEmpty="false" />
+		<pool name="Stages" remaining="30" total="30" toEmpty="false" />
 	</pointPools>
 	<properties>
 		<property editable="true" name="Nom">
@@ -745,6 +745,10 @@
 		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
 			<phase>Devenir COPS</phase>
 			<arg name="method">goToPhaseRelationSupplementaire</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
+			<phase>Relations supplémentaires</phase>
+			<arg name="method">goToPhaseStage</arg>
 		</listener>
 		
 	</passToNextPhaseListeners>

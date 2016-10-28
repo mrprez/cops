@@ -1,6 +1,7 @@
 package com.mrprez.gencross.impl.cops;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.mrprez.gencross.Personnage;
 import com.mrprez.gencross.Property;
@@ -59,7 +61,21 @@ public class StageReader {
 			}
 		}
 		
-		PersonnageSaver.savePersonnage(personnage, System.out);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PersonnageSaver.savePersonnage(personnage, baos);
+		System.out.println(new String(baos.toByteArray()));
+		
+		for(Stage stage : stageList){
+			int i=1;
+			for(Entry<String, Integer> requirement : stage.getRequirement().entrySet()){
+				String name = stage.getName()+" Niv. "+stage.getLevel();
+				if(requirement.getValue()!=null){
+					System.out.println("requirement."+name.replaceAll(" ", "_")+"."+(i++)+"="+requirement.getKey()+":"+requirement.getValue());
+				}else{
+					System.out.println("requirement."+name.replaceAll(" ", "_")+"."+(i++)+"="+requirement.getKey());
+				}
+			}
+		}
 	}
 	
 	private static void saveStage(Stage stage) throws InterruptedException{
@@ -136,7 +152,7 @@ public class StageReader {
 			text = text.trim();
 			if(text.matches("N[1-3]")){
 				int requiredLevel = Integer.parseInt(text.substring(1));
-				String requiredStage = "Stages#"+stageName.replace(String.valueOf(requiredLevel+1), String.valueOf(requiredLevel));
+				String requiredStage = "Stages#"+stageName+" Niv. "+requiredLevel;
 				System.out.println("\t"+requiredStage);
 				requirement.put(requiredStage, null);
 			}else{

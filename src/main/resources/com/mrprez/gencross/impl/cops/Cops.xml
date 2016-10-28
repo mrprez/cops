@@ -523,6 +523,11 @@
 						<propertiesList fixe="true" open="true">
 							<properties></properties>
 							<propertyChoice>
+								<property editable="true" name="avion">
+									<Value class="com.mrprez.gencross.value.IntValue">10</Value>
+									<min><Value class="com.mrprez.gencross.value.IntValue">8</Value></min>
+									<max><Value class="com.mrprez.gencross.value.IntValue">10</Value></max>
+								</property>
 								<property editable="true" name="patrouilleur maritime">
 									<Value class="com.mrprez.gencross.value.IntValue">10</Value>
 									<min><Value class="com.mrprez.gencross.value.IntValue">8</Value></min>
@@ -540,7 +545,7 @@
 								</property>
 							</propertyChoice>
 							<defaultProperty>
-								<property editable="true" name="avion">
+								<property editable="true" name="">
 									<Value class="com.mrprez.gencross.value.IntValue">10</Value>
 									<min><Value class="com.mrprez.gencross.value.IntValue">8</Value></min>
 									<max><Value class="com.mrprez.gencross.value.IntValue">10</Value></max>
@@ -606,6 +611,13 @@
 									<max><Value class="com.mrprez.gencross.value.IntValue">8</Value></max>
 								</property>
 							</propertyChoice>
+							<defaultProperty>
+								<property editable="true" name="">
+									<Value class="com.mrprez.gencross.value.IntValue">8</Value>
+									<min><Value class="com.mrprez.gencross.value.IntValue">8</Value></min>
+									<max><Value class="com.mrprez.gencross.value.IntValue">8</Value></max>
+								</property>
+							</defaultProperty>
 						</propertiesList>
 					</property>
 				</properties>

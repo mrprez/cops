@@ -27,12 +27,24 @@ public class Cops extends Personnage {
 		}
 		return true;
 	}
+	
+	@Override
+	public boolean phaseFinished(){
+		calculate();
+		for(String error : errors){
+			if( ! error.startsWith("Prérequis de stage: ")){
+				return false;
+			}
+		}
+		return true;
+	}
 
 	@Override
 	public void calculate() {
 		super.calculate();
 		calculateLangues();
 		calculateTirRafale();
+		calculateStageRequirement();
 		if(!getPhase().equals("En service")){
 			calculateCaracteristiques();
 			limiteStageLevel();
@@ -53,6 +65,31 @@ public class Cops extends Personnage {
 		}
 	}
 	
+	private void calculateStageRequirement() {
+		for(Property stage : getProperty("Stages").getSubProperties()){
+			for(String requirement : appendix.getSubMap("requirement."+stage.getName()).values()){
+				if(requirement.contains(":")){
+					String propertyName = requirement.split(":")[0];
+					int limit = Integer.parseInt(requirement.split(":")[1]);
+					Property property = getProperty(propertyName);
+					if(propertyName.startsWith("Compétences#")){
+						if(getProperty(requirement)==null || property.getValue().getInt()>limit){
+							errors.add("Prérequis de stage: "+property.getName()+": "+limit);
+						}
+					}else{
+						if(getProperty(requirement)==null ||  property.getValue().getInt()<limit){
+							errors.add("Prérequis de stage: "+property.getName()+": "+limit+"+");
+						}
+					}
+				}else{
+					if(getProperty(requirement)==null){
+						errors.add("Prérequis de stage: "+requirement);
+					}
+				}
+			}
+		}
+	}
+
 	private void limiteStageLevel() {
 		for(Property stage : getProperty("Stages").getSubProperties()){
 			if(stage.getName().charAt(stage.getName().length()-1)!='1'){
@@ -182,7 +219,7 @@ public class Cops extends Personnage {
 		for(Property competence : getProperty("Compétences").getSubProperties()){
 			if(competence.getValue()!=null){
 				competence.setEditable(true);
-				if(competence.getSubProperties()!=null && competence.getValue().equals(competence.getSubProperties().getDefaultProperty().getValue())){
+				if(competence.getSubProperties()!=null && competence.getValue()!=null && competence.getValue().equals(competence.getSubProperties().getDefaultProperty().getValue())){
 					competence.setEditable(false);
 					competence.getSubProperties().setFixe(false);
 				}

@@ -45,8 +45,68 @@ public class TestCops {
 		
 		// Études
 		fillEtudes(personnage);
+		
+		// Pass to phase "Devenir COPS"
+		passToDevenirCops(personnage);
+		
+		// Devenir COPS
+		fillDevenirCops(personnage);
+		
+		// Pass to phase "Relations supplémentaires"
+		passToRelationsSupplementaires(personnage);
+		
+		// Relations supplémentaires
+		fillRelationsSupplementaires(personnage);
+		
+		// Pass to phase "Stages"
+		passToStages(personnage);
+		
+		// Stages
+		fillStages(personnage);
 	}
 	
+	private void fillStages(Personnage personnage) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void passToStages(Personnage personnage) throws Exception {
+		personnage.passToNextPhase();
+		Assert.assertEquals("Stages", personnage.getPhase());
+		Assert.assertEquals(1, personnage.getErrors().size());
+		Assert.assertEquals("Il reste des Stages à dépenser", personnage.getErrors().get(0));
+	}
+
+	private void fillRelationsSupplementaires(Personnage personnage) throws Exception {
+		Property relation = personnage.getProperty("Relations").getSubProperties().getDefaultProperty().clone();
+		relation.setName("Papi");
+		personnage.addPropertyToMotherProperty(relation);
+		personnage.setNewValue(relation, 2);
+		Assert.assertTrue(personnage.phaseFinished());
+	}
+
+	private void passToRelationsSupplementaires(Personnage personnage) throws Exception {
+		personnage.passToNextPhase();
+		Assert.assertEquals("Relations supplémentaires", personnage.getPhase());
+		Assert.assertEquals(1, personnage.getErrors().size());
+		Assert.assertEquals("Il reste des Relations à dépenser", personnage.getErrors().get(0));
+	}
+
+	private void fillDevenirCops(Personnage personnage) throws Exception {
+		personnage.setNewValue(personnage.getProperty("Relations#Tati"), 3);
+		personnage.setNewValue(personnage.getProperty("Points d'adrénaline"), 1);
+		personnage.setNewValue(personnage.getProperty("Points d'ancienneté"), 1);
+		Assert.assertTrue(personnage.phaseFinished());
+	}
+
+	private void passToDevenirCops(Personnage personnage) throws Exception {
+		personnage.passToNextPhase();
+		Assert.assertEquals("Devenir COPS", personnage.getPhase());
+		Assert.assertEquals(2, personnage.getErrors().size());
+		Assert.assertTrue(personnage.getErrors().contains("Il reste des Relations à dépenser"));
+		Assert.assertTrue(personnage.getErrors().contains("Il reste des Adrénaline/Ancienneté à dépenser"));
+	}
+
 	private void fillEtudes(Personnage personnage) throws Exception {
 		Property relation = personnage.getProperty("Relations").getSubProperties().getDefaultProperty().clone();
 		relation.setName("Tati");
@@ -62,16 +122,16 @@ public class TestCops {
 		Assert.assertEquals(2, personnage.getErrors().size());
 		for(Property competence : personnage.getProperty("Compétences").getSubProperties()){
 			if(competence.getValue()!=null){
-				Assert.assertEquals(2, competence.getValue().getInt());
+				Assert.assertEquals(2, competence.getMin().getInt());
 			}
 			if(competence.getSubProperties()!=null){
 				for(Property spe : competence.getSubProperties()){
-					Assert.assertEquals(2, spe.getValue().getInt());
+					Assert.assertEquals(2, spe.getMin().getInt());
 				}
 				for(Property spe : competence.getSubProperties().getOptions().values()){
-					Assert.assertEquals(2, spe.getValue().getInt());
+					Assert.assertEquals(2, spe.getMin().getInt());
 				}
-				Assert.assertEquals(2, competence.getSubProperties().getDefaultProperty().getValue().getInt());
+				Assert.assertEquals(2, competence.getSubProperties().getDefaultProperty().getMin().getInt());
 			}
 		}
 	}
@@ -116,6 +176,9 @@ public class TestCops {
 		
 		personnage.setNewValue("Compétences#Informatique", 6);
 		Assert.assertEquals(2, personnage.getPointPools().get("Compétences").getRemaining());
+		Assert.assertFalse(personnage.getProperty("Compétences#Informatique").getSubProperties().isFixe());
+		
+		testCheckCompetences(personnage);
 		
 		Property newSpe = personnage.getProperty("Compétences#Informatique").getSubProperties().getDefaultProperty().clone();
 		newSpe.setName("piratage");
@@ -123,8 +186,24 @@ public class TestCops {
 		personnage.setNewValue("Compétences#Informatique#piratage", 5);
 		Assert.assertEquals(1, personnage.getPointPools().get("Compétences").getRemaining());
 		
+		personnage.setNewValue("Compétences#Informatique", 7);
+		Assert.assertEquals(6, personnage.getProperty("Compétences#Informatique").getValue().getInt());
+		Assert.assertEquals("Vous ne pouvez modifier une compétence avec une ou plusieurs spécialités", personnage.getActionMessage());
+		
 		personnage.setNewValue("Compétences#Arme de Poing", 6);
 		Assert.assertTrue(personnage.phaseFinished());
+	}
+	
+	
+	private void testCheckCompetences(Personnage personnage) throws Exception{
+		personnage.setNewValue("Compétences#Informatique", 7);
+		Assert.assertEquals(7, personnage.getProperty("Compétences#Informatique").getValue().getInt());
+		Assert.assertTrue(personnage.getProperty("Compétences#Informatique").getSubProperties().isFixe());
+		
+		personnage.setNewValue("Compétences#Informatique", 6);
+		Assert.assertEquals(2, personnage.getPointPools().get("Compétences").getRemaining());
+		Assert.assertFalse(personnage.getProperty("Compétences#Informatique").getSubProperties().isFixe());
+		
 	}
 	
 	private void passToPhaseCompetence(Personnage personnage) throws Exception{

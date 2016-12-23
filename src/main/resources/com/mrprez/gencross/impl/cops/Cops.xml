@@ -693,6 +693,10 @@
 		
 	</properties>
 	<beforeChangeValueListeners>
+		<listener class="com.mrprez.gencross.listener.custom.CustomBeforeChangeValueListener">
+			<pattern>Compétences#[^#]*</pattern>
+			<arg name="method">checkCompetences</arg>
+		</listener>
 	</beforeChangeValueListeners>
 	<afterChangeValueListeners>
 		<listener class="com.mrprez.gencross.listener.custom.CustomAfterChangeValueListener">

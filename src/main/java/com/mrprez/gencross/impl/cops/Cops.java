@@ -110,7 +110,7 @@ public class Cops extends Personnage {
 				}
 			}
 			if(specialite.getValue().getInt()<tirLevel){
-				errors.add("Votre score de Tir en Rafale / "+specialite.getName()+" ne peut être inférieur votre score en "+specialite.getName());
+				errors.add("Votre score de Tir en Rafale / "+specialite.getName()+" ne peut être inférieur à votre score en "+specialite.getName());
 			}
 		}
 		
@@ -272,7 +272,7 @@ public class Cops extends Personnage {
 	
 	public void goToPhaseDevenirCops(){
 		getPointPools().get("Relations").add(2);
-		getPointPools().get("Adrénaline/Ancienneté").add(2);
+		getPointPools().get("Adrénaline/Ancienneté").setToEmpty(true);
 	}
 	
 	public void goToPhaseRelationSupplementaire(){

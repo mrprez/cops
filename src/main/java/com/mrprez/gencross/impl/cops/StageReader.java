@@ -90,9 +90,8 @@ public class StageReader {
 		stageList.add(stage);
 		if(stage.isCumul() && stage.getCapacities().size()>1){
 			for(String capacity : stage.getCapacities()){
-				Property property = new Property(stage.getName()+" Niv. "+stage.getLevel(), personnage);
+				Property property = new Property(stage.getName()+" Niv. "+stage.getLevel()+" - "+capacity, personnage);
 				property.setEditable(false);
-				property.setSpecification(capacity);
 				property.setHistoryFactory(new ConstantHistoryFactory("Stages", 5*stage.getLevel()+5));
 				personnage.getProperty("Stages").getSubProperties().addOptionProperty(property);
 			}

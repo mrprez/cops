@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -67,19 +68,23 @@ public class StageReader {
 		
 		for(Stage stage : stageList){
 			int i=1;
-			for(Entry<String, Integer> requirement : stage.getRequirement().entrySet()){
+			for (Requirement requirement : stage.getRequirement()) {
 				String name = stage.getName()+" Niv. "+stage.getLevel();
-				if(requirement.getValue()!=null){
-					System.out.println("requirement."+name.replaceAll(" ", "_")+"."+(i++)+"="+requirement.getKey()+":"+requirement.getValue());
-				}else{
-					System.out.println("requirement."+name.replaceAll(" ", "_")+"."+(i++)+"="+requirement.getKey());
+				StringBuilder requirementProperty = new StringBuilder("requirement." + name.replaceAll(" ", "_") + "." + (i++) + "=");
+				for (Entry<String, Integer> clause : requirement.getClauses().entrySet()) {
+					if (clause.getValue() != null) {
+						requirementProperty.append(clause.getKey() + ":" + clause.getValue() + "|");
+					} else {
+						requirementProperty.append(clause.getKey() + "|");
+					}
 				}
+				System.out.println(requirementProperty.substring(0, requirementProperty.length() - 1));
 			}
 		}
 	}
 	
 	private static void saveStage(Stage stage) throws InterruptedException{
-		if(stage.cumul && stage.getCapacities().size()<=1){
+		if (stage.cumul && stage.getCapacities().isEmpty()) {
 			System.err.println("Cumul issue: cumul=true, capacity nb="+stage.getCapacities().size());
 			Thread.sleep(100);
 		}
@@ -88,7 +93,7 @@ public class StageReader {
 			Thread.sleep(100);
 		}
 		stageList.add(stage);
-		if(stage.isCumul() && stage.getCapacities().size()>1){
+		if (stage.isCumul() && stage.getCapacities().size() > 0) {
 			for(String capacity : stage.getCapacities()){
 				Property property = new Property(stage.getName()+" Niv. "+stage.getLevel()+" - "+capacity, personnage);
 				property.setEditable(false);
@@ -140,55 +145,67 @@ public class StageReader {
 		return new Stage(name, level, surname);
 	}
 	
-	private static Map<String, Integer> extractRequirement(String line, String stageName) throws IOException, Exception{
-		Map<String, Integer> requirement = new HashMap<String, Integer>();
+	private static List<Requirement> extractRequirement(String line, String stageName) throws IOException, Exception {
+		List<Requirement> requirementList = new ArrayList<Requirement>();
 		
 		line = line.replace("</p>", "").replace("<p><b>Pré-requis</b>&nbsp;:", "").trim();
 		if(line.isEmpty()){
-			return requirement;
+			return requirementList;
 		}
 		for(String text : line.split(",")){
+			Map<String, Integer> requirement = new HashMap<String, Integer>();
 			text = text.trim();
-			if(text.matches("N[1-3]")){
-				int requiredLevel = Integer.parseInt(text.substring(1));
-				String requiredStage = "Stages#"+stageName+" Niv. "+requiredLevel;
-				System.out.println("\t"+requiredStage);
-				requirement.put(requiredStage, null);
-			}else{
-				String name = text.substring(0, text.lastIndexOf(' '));
-				String level = text.substring(text.lastIndexOf(' ')+1);
-				if(CARCACTERISTIQUES.contains(name)){
-					System.out.println("\t"+"Caracteristiques#"+name+": "+extractLevel(level));
-					requirement.put("Caracteristiques#"+name, extractLevel(level));
-				} else if(name.toLowerCase().contains("ancienneté")) {
-					System.out.println("\t"+"Points d'ancienneté"+": "+extractLevel(level));
-					requirement.put("Points d'ancienneté", extractLevel(level));
-				} else if(name.toLowerCase().contains("adrénaline")) {
-					System.out.println("\t"+"Points d'adrénaline"+": "+extractLevel(level));
-					requirement.put("Points d'adrénaline", extractLevel(level));
-				} else if(name.matches(".+\\[.+\\]")) {
-					String spe = name.substring(name.indexOf("[")+1, name.indexOf("]")).trim();
-					String comp = name.substring(0, name.indexOf("[")).trim();
-					if(personnage.getProperty("Compétences").getSubProperty(comp)!=null){
-						System.out.println("\t"+"Compétences#"+comp+"#"+spe+": "+level);
-						requirement.put("Compétences#"+comp+"#"+spe, extractLevel(level));
-					}else{
-						System.err.println("\t"+"Compétences#"+comp+"#"+spe+": "+level);
-					}
-				} else if(level.matches("[0-9][+]")) {
-					if(personnage.getProperty("Compétences").getSubProperty(name)!=null){
-						System.out.println("\t"+"Compétences#"+name+": "+level);
-						requirement.put("Compétences#"+name, extractLevel(level));
-					}else{
-						System.err.println("\t"+"Compétences#"+name+": "+level);
-					}
-				} else {
-					System.err.println("\t"+name+": "+level);
+			for (String clauseText : text.split(" ou ")) {
+				Map.Entry<String, Integer> clause = extractOneRequirementEntry(clauseText, stageName);
+				if (clause != null) {
+					requirement.put(clause.getKey(), clause.getValue());
 				}
 			}
+			requirementList.add(new Requirement(requirement));
 		}
-		
-		return requirement;
+
+		return requirementList;
+	}
+
+	private static Map.Entry<String, Integer> extractOneRequirementEntry(String text, String stageName) {
+		if (text.matches("N[1-3]")) {
+			int requiredLevel = Integer.parseInt(text.substring(1));
+			String requiredStage = "Stages#" + stageName + " Niv. " + requiredLevel;
+			System.out.println("\t" + requiredStage);
+			return new AbstractMap.SimpleEntry<String, Integer>(requiredStage, null);
+		} else {
+			String name = text.substring(0, text.lastIndexOf(' '));
+			String level = text.substring(text.lastIndexOf(' ') + 1);
+			if (CARCACTERISTIQUES.contains(name)) {
+				System.out.println("\t" + "Caracteristiques#" + name + ": " + extractLevel(level));
+				return new AbstractMap.SimpleEntry<String, Integer>("Caracteristiques#" + name, extractLevel(level));
+			} else if (name.toLowerCase().contains("ancienneté")) {
+				System.out.println("\t" + "Points d'ancienneté" + ": " + extractLevel(level));
+				return new AbstractMap.SimpleEntry<String, Integer>("Points d'ancienneté", extractLevel(level));
+			} else if (name.toLowerCase().contains("adrénaline")) {
+				System.out.println("\t" + "Points d'adrénaline" + ": " + extractLevel(level));
+				return new AbstractMap.SimpleEntry<String, Integer>("Points d'adrénaline", extractLevel(level));
+			} else if (name.matches(".+\\[.+\\]")) {
+				String spe = name.substring(name.indexOf("[") + 1, name.indexOf("]")).trim();
+				String comp = name.substring(0, name.indexOf("[")).trim();
+				if (personnage.getProperty("Compétences").getSubProperty(comp) != null) {
+					System.out.println("\t" + "Compétences#" + comp + "#" + spe + ": " + level);
+					return new AbstractMap.SimpleEntry<String, Integer>("Compétences#" + comp + "#" + spe, extractLevel(level));
+				} else {
+					System.err.println("\t" + "Compétences#" + comp + "#" + spe + ": " + level);
+				}
+			} else if (level.matches("[0-9][+]")) {
+				if (personnage.getProperty("Compétences").getSubProperty(name) != null) {
+					System.out.println("\t" + "Compétences#" + name + ": " + level);
+					return new AbstractMap.SimpleEntry<String, Integer>("Compétences#" + name, extractLevel(level));
+				} else {
+					System.err.println("\t" + "Compétences#" + name + ": " + level);
+				}
+			} else {
+				System.err.println("\t" + name + ": " + level);
+			}
+		}
+		return null;
 	}
 	
 	private static int extractLevel(String string){
@@ -206,7 +223,7 @@ public class StageReader {
 		private int level;
 		private boolean cumul;
 		private List<String> capacities = new ArrayList<String>();
-		private Map<String,Integer> requirement = new HashMap<String, Integer>();
+		private List<Requirement> requirement = new ArrayList<Requirement>();
 		
 		public Stage(String name, int level, String surname) {
 			super();
@@ -235,11 +252,11 @@ public class StageReader {
 			return capacities;
 		}
 
-		public Map<String, Integer> getRequirement() {
+		public List<Requirement> getRequirement() {
 			return requirement;
 		}
 
-		public void setRequirement(Map<String, Integer> requirement) {
+		public void setRequirement(List<Requirement> requirement) {
 			this.requirement = requirement;
 		}
 
@@ -251,6 +268,19 @@ public class StageReader {
 			return level;
 		}
 		
+	}
+
+	public static class Requirement {
+		private Map<String, Integer> clauses = new HashMap<String, Integer>();
+
+		public Requirement(Map<String, Integer> clauses) {
+			this.clauses = clauses;
+		}
+
+		public Map<String, Integer> getClauses() {
+			return clauses;
+		}
+
 	}
 
 }

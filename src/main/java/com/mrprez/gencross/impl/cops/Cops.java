@@ -1,5 +1,7 @@
 package com.mrprez.gencross.impl.cops;
 
+import java.util.StringJoiner;
+
 import com.mrprez.gencross.Personnage;
 import com.mrprez.gencross.Property;
 import com.mrprez.gencross.history.ProportionalHistoryFactory;
@@ -68,27 +70,42 @@ public class Cops extends Personnage {
 	private void calculateStageRequirement() {
 		for(Property stage : getProperty("Stages").getSubProperties()){
 			for(String requirement : appendix.getSubMap("requirement."+stage.getName()).values()){
-				if(requirement.contains(":")){
-					String propertyName = requirement.split(":")[0];
-					int limit = Integer.parseInt(requirement.split(":")[1]);
-					Property property = getProperty(propertyName);
-					if(propertyName.startsWith("Compétences#")){
-						if(getProperty(requirement)==null || property.getValue().getInt()>limit){
-							errors.add("Prérequis de stage: "+property.getName()+": "+limit);
-						}
-					}else{
-						if(getProperty(requirement)==null ||  property.getValue().getInt()<limit){
-							errors.add("Prérequis de stage: "+property.getName()+": "+limit+"+");
-						}
+				StringJoiner errorList = new StringJoiner(" ou ");
+				for (String requirementClause : requirement.split("[|]")) {
+					String errorMsg = calculateOneRequirement(requirementClause);
+					if (errorMsg != null) {
+						errorList.add(errorMsg);
 					}
-				}else{
-					if(getProperty(requirement)==null){
-						errors.add("Prérequis de stage: "+requirement);
-					}
+				}
+				if (errorList.length() > 0) {
+					errors.add("Prérequis de stage: " + errorList);
 				}
 			}
 		}
 	}
+
+	private String calculateOneRequirement(String requirement) {
+		if (requirement.contains(":")) {
+			String propertyName = requirement.split(":")[0];
+			int limit = Integer.parseInt(requirement.split(":")[1]);
+			Property property = getProperty(propertyName);
+			if (propertyName.startsWith("Compétences#")) {
+				if (getProperty(requirement) == null || property.getValue().getInt() > limit) {
+					return property.getName() + ": " + limit;
+				}
+			} else {
+				if (getProperty(requirement) == null || property.getValue().getInt() < limit) {
+					return property.getName() + ": " + limit;
+				}
+			}
+		} else {
+			if (getProperty(requirement) == null) {
+				return requirement;
+			}
+		}
+		return null;
+	}
+
 
 	private void limiteStageLevel() {
 		for(Property stage : getProperty("Stages").getSubProperties()){

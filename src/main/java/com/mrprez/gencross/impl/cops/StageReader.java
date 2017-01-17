@@ -84,23 +84,18 @@ public class StageReader {
 	}
 	
 	private static void saveStage(Stage stage) throws InterruptedException{
-		if (stage.cumul && stage.getCapacities().isEmpty()) {
-			System.err.println("Cumul issue: cumul=true, capacity nb="+stage.getCapacities().size());
-			Thread.sleep(100);
-		}
 		if(!stage.cumul && stage.getCapacities().size()>1){
-			System.err.println("Cumul issue: cumul=false, capacity nb="+stage.getCapacities().size());
-			Thread.sleep(100);
+			stage.setCumul(true);
 		}
 		stageList.add(stage);
-		if (stage.isCumul() && stage.getCapacities().size() > 0) {
+		if (stage.isCumul() && stage.getCapacities().size() > 1) {
 			for(String capacity : stage.getCapacities()){
 				Property property = new Property(stage.getName()+" Niv. "+stage.getLevel()+" - "+capacity, personnage);
 				property.setEditable(false);
 				property.setHistoryFactory(new ConstantHistoryFactory("Stages", 5*stage.getLevel()+5));
 				personnage.getProperty("Stages").getSubProperties().addOptionProperty(property);
 			}
-		} else if(stage.isCumul()){
+		} else if (stage.isCumul()) {
 			Property property = new Property(stage.getName()+" Niv. "+stage.getLevel(), personnage);
 			property.setValue(new IntValue(1));
 			property.setMin(new IntValue(1));

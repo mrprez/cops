@@ -11,7 +11,7 @@ import com.mrprez.gencross.value.Value;
 public class Cops extends Personnage {
 	private final static String[] BASE_SOCIAL_COMPETENCES = new String[]{"Éloquence", "Intimidation", "Rhétorique"};
 	private final static String[] BASE_CAC_SPE = new String[]{"coups", "projections", "immobilisations"};
-	
+	private final static String STAGE_REQUIREMENT_PREFIX = "Prérequis du stage ";
 	
 	
 	public void changeCompetences(Property competence, Value oldValue){
@@ -34,7 +34,7 @@ public class Cops extends Personnage {
 	public boolean phaseFinished(){
 		calculate();
 		for(String error : errors){
-			if( ! error.startsWith("Prérequis de stage: ")){
+			if (!error.startsWith(STAGE_REQUIREMENT_PREFIX)) {
 				return false;
 			}
 		}
@@ -78,9 +78,54 @@ public class Cops extends Personnage {
 					}
 				}
 				if (errorList.length() > 0) {
-					errors.add("Prérequis de stage: " + errorList);
+					errors.add(STAGE_REQUIREMENT_PREFIX + stage.getName() + " :" + errorList);
 				}
 			}
+			if (stage.getName().equals("Communication médiatique Niveau 3")) {
+				calculateMassGuruStageRequirement();
+			}
+			if (stage.getName().equals("Contrôle des biens et des contrefaçons Niveau 2")) {
+				calculateReceleurStageRequirement(stage);
+			}
+			if (stage.getName().startsWith("Manœuvres et mouvements Niv. 2")) {
+				calculateBulldozerStageRequirement();
+			}
+			if (stage.getName().startsWith("Négociation Niv. 3")) {
+				// TODO
+			}
+		}
+	}
+
+	private void calculateMassGuruStageRequirement() {
+		Property ocobRelation = null;
+		for (Property relation : getProperty("Relations").getSubProperties()) {
+			if (relation.getName().toUpperCase().contains("OCOB")) {
+				if (ocobRelation == null || ocobRelation.getValue().getInt() < relation.getValue().getInt()) {
+					ocobRelation = relation;
+				}
+			}
+		}
+		if (ocobRelation == null || ocobRelation.getValue().getInt() < 2) {
+			errors.add(STAGE_REQUIREMENT_PREFIX + "Communication médiatique Niveau 3: Relation au sein de l’OCOB de niveau: 2");
+		}
+	}
+
+	private void calculateReceleurStageRequirement(Property stage) {
+		Property connaissance = getProperty("Compétences#Connaissance#" + stage.getSpecification());
+		if (connaissance == null || connaissance.getValue().getInt() > 6) {
+			errors.add(STAGE_REQUIREMENT_PREFIX + stage.getFullName() + ": Connaissance/" + stage.getSpecification() + ": 6");
+		}
+	}
+
+	private void calculateBulldozerStageRequirement() {
+		int level1StageNb = 0;
+		for (Property stage : getProperty("Stages").getSubProperties()) {
+			if (stage.getName().startsWith("Manœuvres et mouvements Niv. 1")) {
+				level1StageNb++;
+			}
+		}
+		if (level1StageNb < 2) {
+			errors.add(STAGE_REQUIREMENT_PREFIX + "Manœuvres et mouvements Niv. 1: Stage niveau 1 (x2: minimum)");
 		}
 	}
 

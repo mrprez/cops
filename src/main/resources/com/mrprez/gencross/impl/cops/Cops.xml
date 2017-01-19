@@ -543,6 +543,11 @@
 									<min><Value class="com.mrprez.gencross.value.IntValue">8</Value></min>
 									<max><Value class="com.mrprez.gencross.value.IntValue">10</Value></max>
 								</property>
+								<property editable="true" name="VTOL">
+									<Value class="com.mrprez.gencross.value.IntValue">10</Value>
+									<min><Value class="com.mrprez.gencross.value.IntValue">8</Value></min>
+									<max><Value class="com.mrprez.gencross.value.IntValue">10</Value></max>
+								</property>
 							</propertyChoice>
 							<defaultProperty>
 								<property editable="true" name="">
@@ -1134,6 +1139,9 @@
 						<min>
 							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
 						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">3</Value>
+						</max>
 						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
@@ -1174,16 +1182,11 @@
 							</args>
 						</historyFactory>
 					</property>
-					<property name="Géopolitique globale Niv. 1" editable="true" canBeRemoved="true">
-						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
-						<min>
-							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
-						</min>
-						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+					<property name="Géopolitique globale Niv. 1" editable="true" canBeRemoved="true" specification="">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="startValue">0.0</arg>
-								<arg key="factor">10.0</arg>
+								<arg key="cost">10</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1192,6 +1195,9 @@
 						<min>
 							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
 						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">3</Value>
+						</max>
 						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
@@ -1248,16 +1254,11 @@
 							</args>
 						</historyFactory>
 					</property>
-					<property name="Infiltration Niv. 2" editable="true" canBeRemoved="true">
-						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
-						<min>
-							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
-						</min>
-						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+					<property name="Infiltration Niv. 2" editable="true" canBeRemoved="true" specification="">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="startValue">0.0</arg>
-								<arg key="factor">15.0</arg>
+								<arg key="cost">10</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1501,16 +1502,19 @@
 							</args>
 						</historyFactory>
 					</property>
-					<property name="Pilotage et intervention en milieu urbain Niv. 2" editable="true" canBeRemoved="true">
-						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
-						<min>
-							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
-						</min>
-						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+					<property name="Pilotage et intervention en milieu urbain Niv. 2 - hélicoptère" editable="true" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="startValue">0.0</arg>
-								<arg key="factor">15.0</arg>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Pilotage et intervention en milieu urbain Niv. 2 - VTOL" editable="true" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Stages</pointPool>
+							<args>
+								<arg key="cost">10</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -2074,6 +2078,10 @@
 	<beforeAddPropertyListeners>
 	</beforeAddPropertyListeners>
 	<afterAddPropertyListeners>
+		<listener class="com.mrprez.gencross.listener.custom.CustomAfterAddPropertyListener">
+			<pattern>Stages#[^#]*</pattern>
+			<arg name="method">addStage</arg>
+		</listener>
 	</afterAddPropertyListeners>
 	<beforeDeletePropertyListeners>
 	</beforeDeletePropertyListeners>

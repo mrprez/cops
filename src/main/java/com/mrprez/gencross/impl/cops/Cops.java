@@ -1,7 +1,5 @@
 package com.mrprez.gencross.impl.cops;
 
-import java.util.StringJoiner;
-
 import com.mrprez.gencross.Personnage;
 import com.mrprez.gencross.Property;
 import com.mrprez.gencross.history.ProportionalHistoryFactory;
@@ -70,30 +68,52 @@ public class Cops extends Personnage {
 	private void calculateStageRequirement() {
 		for(Property stage : getProperty("Stages").getSubProperties()){
 			for(String requirement : appendix.getSubMap("requirement."+stage.getName()).values()){
-				StringJoiner errorList = new StringJoiner(" ou ");
+				StringBuilder completeMsg = new StringBuilder(" ou ");
 				for (String requirementClause : requirement.split("[|]")) {
 					String errorMsg = calculateOneRequirement(requirementClause);
 					if (errorMsg != null) {
-						errorList.add(errorMsg);
+						if (completeMsg.length() > 0) {
+							completeMsg.append(" ou ");
+						}
+						completeMsg.append(errorMsg);
 					}
 				}
-				if (errorList.length() > 0) {
-					errors.add(STAGE_REQUIREMENT_PREFIX + stage.getName() + " :" + errorList);
+				if (completeMsg.length() > 0) {
+					errors.add(STAGE_REQUIREMENT_PREFIX + stage.getName() + " :" + completeMsg);
 				}
 			}
-			if (stage.getName().equals("Communication médiatique Niveau 3")) {
+			if (stage.getName().equals("Communication médiatique Niv. 3")) {
 				calculateMassGuruStageRequirement();
 			}
-			if (stage.getName().equals("Contrôle des biens et des contrefaçons Niveau 2")) {
+			if (stage.getName().equals("Contrôle des biens et des contrefaçons Niv. 2")) {
 				calculateReceleurStageRequirement(stage);
 			}
 			if (stage.getName().startsWith("Manœuvres et mouvements Niv. 2")) {
 				calculateBulldozerStageRequirement();
 			}
-			if (stage.getName().startsWith("Négociation Niv. 3")) {
-				// TODO
+			if (stage.getName().startsWith("Sensibilisation culturelle Niv. 2")) {
+				calculateEtCaresserLesChiensStageRequirement();
+			}
+			if (stage.getName().startsWith("Pilotage et intervention en milieu urbain Niv. 2")) {
+				calculateSupercopterStageRequirement(stage);
 			}
 		}
+	}
+
+	private void calculateSupercopterStageRequirement(Property stage) {
+		Property competence = getProperty("Compétences#Pilotage").getSubProperty(stage.getSpecification());
+		if(competence==null || competence.getValue().getInt()>6){
+			errors.add(STAGE_REQUIREMENT_PREFIX + stage.getName() + ": Pilotage/" + stage.getSpecification() + " 6+ nécessaire");
+		}
+	}
+
+	private void calculateEtCaresserLesChiensStageRequirement() {
+		for (Property connaissance : getProperty("Compétences#Connaissance").getSubProperties()) {
+			if (connaissance.getValue().getInt() <= 5) {
+				return;
+			}
+		}
+		errors.add(STAGE_REQUIREMENT_PREFIX + "Vous devez avoir un compétence Connaissance appropriée d'une culture particulière dans un quartier spécifique à 5+");
 	}
 
 	private void calculateMassGuruStageRequirement() {
@@ -106,7 +126,7 @@ public class Cops extends Personnage {
 			}
 		}
 		if (ocobRelation == null || ocobRelation.getValue().getInt() < 2) {
-			errors.add(STAGE_REQUIREMENT_PREFIX + "Communication médiatique Niveau 3: Relation au sein de l’OCOB de niveau: 2");
+			errors.add(STAGE_REQUIREMENT_PREFIX + "Communication médiatique Niv. 3: Relation au sein de l’OCOB de niveau: 2");
 		}
 	}
 
@@ -345,4 +365,11 @@ public class Cops extends Personnage {
 		getPointPools().get("Stages").setToEmpty(true);
 	}
 	
+	public void addStage(Property stage) {
+		if (stage.getSpecification() == null && stage.getName().contains(Property.SPECIFICATION_SEPARATOR)) {
+			stage.setSpecification(stage.getName().substring(stage.getName().lastIndexOf(Property.SPECIFICATION_SEPARATOR) + Property.SPECIFICATION_SEPARATOR.length()));
+			stage.setName(stage.getName().substring(0, stage.getName().lastIndexOf(Property.SPECIFICATION_SEPARATOR)));
+		}
+	}
+
 }

@@ -68,7 +68,7 @@ public class Cops extends Personnage {
 	private void calculateStageRequirement() {
 		for(Property stage : getProperty("Stages").getSubProperties()){
 			for(String requirement : appendix.getSubMap("requirement."+stage.getName()).values()){
-				StringBuilder completeMsg = new StringBuilder(" ou ");
+				StringBuilder completeMsg = new StringBuilder();
 				for (String requirementClause : requirement.split("[|]")) {
 					String errorMsg = calculateOneRequirement(requirementClause);
 					if (errorMsg != null) {
@@ -76,10 +76,13 @@ public class Cops extends Personnage {
 							completeMsg.append(" ou ");
 						}
 						completeMsg.append(errorMsg);
+					} else {
+						completeMsg = new StringBuilder();
+						break;
 					}
 				}
 				if (completeMsg.length() > 0) {
-					errors.add(STAGE_REQUIREMENT_PREFIX + stage.getName() + " :" + completeMsg);
+					errors.add(STAGE_REQUIREMENT_PREFIX + stage.getName() + ": " + completeMsg);
 				}
 			}
 			if (stage.getName().equals("Communication médiatique Niv. 3")) {
@@ -92,11 +95,111 @@ public class Cops extends Personnage {
 				calculateBulldozerStageRequirement();
 			}
 			if (stage.getName().startsWith("Sensibilisation culturelle Niv. 2")) {
-				calculateEtCaresserLesChiensStageRequirement();
+				calculateEtCaresserLesChiensStageRequirement(stage);
 			}
 			if (stage.getName().startsWith("Pilotage et intervention en milieu urbain Niv. 2")) {
 				calculateSupercopterStageRequirement(stage);
 			}
+			if (stage.getName().startsWith("Législation et droit du citoyen Niv. 3")) {
+				calculateMonsieurLeProcureurStageRequirement();
+			}
+			if (stage.getName().startsWith("Lutte anti-drogue (NADIV) Niv. 2")) {
+				calculateDopeMasterStageRequirement();
+			}
+			if (stage.getName().startsWith("Technique d`interrogatoire Niv. 1")) {
+				calculateLeBonLaBruteEtLeTruand(stage);
+			}
+			if (stage.getName().startsWith("Technique de l`informatique Niv. 2")) {
+				calculateDosMaster1_0(stage);
+			}
+			if (stage.getName().startsWith("Technique de l`informatique Niv. 3")) {
+				calculateKeyboardMaestro2_0(stage);
+			}
+			if (stage.getName().startsWith("Tir Niv. 1")) {
+				calculateOneRequirement("Compétences#" + stage.getSpecification() + ":6");
+			}
+			if (stage.getName().startsWith("Tir Niv. 2")) {
+				calculateOneRequirement("Compétences#" + stage.getSpecification() + ":5");
+			}
+			if (stage.getName().startsWith("Tir Niv. 3")) {
+				calculateOneRequirement("Compétences#" + stage.getName().split(" - ")[1] + ":4");
+			}
+		}
+	}
+
+	private void calculateKeyboardMaestro2_0(Property stage) {
+		if (stage.getSpecification().equals("Trojan")) {
+			if (getProperty("Compétences#Informatique#piratage") == null || getProperty("Compétences#Informatique#piratage").getValue().getInt() > 4) {
+				errors.add(STAGE_REQUIREMENT_PREFIX + "Technique de l`informatique Niv. 3 - Trojan: Informatique[piratage]: 4+ nécessaire");
+			}
+			if (getProperty("Stages#Technique de l`informatique Niv. 2 - Scanner") == null) {
+				errors.add(STAGE_REQUIREMENT_PREFIX + "Technique de l`informatique Niv. 3 - Trojan: Scanner nécessaire");
+			}
+		}
+		if (stage.getSpecification().equals("Big Brother")) {
+			if (getProperty("Compétences#Informatique#programmation") == null || getProperty("Compétences#Informatique#programmation").getValue().getInt() > 4) {
+				errors.add(STAGE_REQUIREMENT_PREFIX + "Technique de l`informatique Niv. 3 - Big Brother: Informatique[programmation]: 4+ nécessaire");
+			}
+			if (getProperty("Stages#Technique de l`informatique Niv. 2 - Scan FaceBook Master") == null) {
+				errors.add(STAGE_REQUIREMENT_PREFIX + "Technique de l`informatique Niv. 3 - Big Brother: Scan FaceBook Master nécessaire");
+			}
+		}
+	}
+
+	private void calculateDosMaster1_0(Property stage) {
+		if(stage.getSpecification().equals("Scanner")){
+			if (getProperty("Compétences#Informatique#piratage") == null || getProperty("Compétences#Informatique#piratage").getValue().getInt() > 5) {
+				errors.add(STAGE_REQUIREMENT_PREFIX + "Technique de l`informatique Niv. 2 - Scanner: Informatique[piratage]: 5+ nécessaire");
+			}
+			if (getProperty("Stages#Technique de l`informatique Niv. 1 - LAPD Software") == null) {
+				errors.add(STAGE_REQUIREMENT_PREFIX + "Technique de l`informatique Niv. 2 - Scanner: LAPD Software nécessaire");
+			}
+		}
+		if (stage.getSpecification().equals("Scan FaceBook Master")) {
+			if (getProperty("Compétences#Informatique#programmation") == null || getProperty("Compétences#Informatique#programmation").getValue().getInt() > 5) {
+				errors.add(STAGE_REQUIREMENT_PREFIX + "Technique de l`informatique Niv. 2 - Scanner: Informatique[programmation]: 5+ nécessaire");
+			}
+			if (getProperty("Stages#Technique de l`informatique Niv. 1 - Google Geek") == null) {
+				errors.add(STAGE_REQUIREMENT_PREFIX + "Technique de l`informatique Niv. 2 - Scanner: Google Geek nécessaire");
+			}
+		}
+	}
+
+	private void calculateLeBonLaBruteEtLeTruand(Property stage) {
+		Property competence = getProperty("Compétences").getSubProperty(stage.getSpecification());
+		if(competence.getValue().getInt()>6){
+			errors.add(STAGE_REQUIREMENT_PREFIX + stage.getFullName() + ": " + competence.getName() + ": 6+ nécessaire");
+		}
+		if (competence.getName().equals("Éloquence") && getProperty("Caracteristiques#Charme").getValue().getInt() < 3) {
+			errors.add(STAGE_REQUIREMENT_PREFIX + stage.getFullName() + ": Charme 3 nécessaire");
+		} else if (competence.getName().equals("Intimidation") && getProperty("Caracteristiques#Sang froid").getValue().getInt() < 3) {
+			errors.add(STAGE_REQUIREMENT_PREFIX + stage.getFullName() + ": Sang froid 3 nécessaire");
+		} else if (competence.getName().equals("Rhétorique") && getProperty("Caracteristiques#Education").getValue().getInt() < 3) {
+			errors.add(STAGE_REQUIREMENT_PREFIX + stage.getFullName() + ": Education 3 nécessaire");
+		}
+	}
+
+	private void calculateMonsieurLeProcureurStageRequirement() {
+		Property relationLevel2 = null;
+		for (Property relation : getProperty("Relations").getSubProperties()) {
+			if (relation.getValue().getInt() >= 2) {
+				relationLevel2 = relation;
+			}
+		}
+		if (relationLevel2 == null) {
+			errors.add(STAGE_REQUIREMENT_PREFIX + "Législation et droit du citoyen Niv. 3: Relation de niveau 2 dans une organisation criminelle");
+		}
+	}
+
+	private void calculateDopeMasterStageRequirement() {
+		Property relationLevel2 = null;
+		for (Property relation : getProperty("Relations").getSubProperties()) {
+			if (relation.getValue().getInt() >= 2) {
+				relationLevel2 = relation;
+			}
+		}
+		if (relationLevel2 == null) {
+			errors.add(STAGE_REQUIREMENT_PREFIX + "Lutte anti-drogue (NADIV) Niv. 2: Relation de niveau 2 au sein du parti majoritaire à Los: Angeles ou du bureau du procureur.");
 		}
 	}
 
@@ -107,13 +210,11 @@ public class Cops extends Personnage {
 		}
 	}
 
-	private void calculateEtCaresserLesChiensStageRequirement() {
-		for (Property connaissance : getProperty("Compétences#Connaissance").getSubProperties()) {
-			if (connaissance.getValue().getInt() <= 5) {
-				return;
-			}
+	private void calculateEtCaresserLesChiensStageRequirement(Property stage) {
+		Property connaissance = getProperty("Compétences#Connaissance").getSubProperty(stage.getSpecification());
+		if(connaissance==null || connaissance.getValue().getInt() > 5) {
+			errors.add(STAGE_REQUIREMENT_PREFIX + "Sensibilisation culturelle Niv. 2: Connaissance appropriée d'une culture particulière dans un quartier spécifique: 5+");
 		}
-		errors.add(STAGE_REQUIREMENT_PREFIX + "Vous devez avoir un compétence Connaissance appropriée d'une culture particulière dans un quartier spécifique à 5+");
 	}
 
 	private void calculateMassGuruStageRequirement() {
@@ -126,7 +227,7 @@ public class Cops extends Personnage {
 			}
 		}
 		if (ocobRelation == null || ocobRelation.getValue().getInt() < 2) {
-			errors.add(STAGE_REQUIREMENT_PREFIX + "Communication médiatique Niv. 3: Relation au sein de l’OCOB de niveau: 2");
+			errors.add(STAGE_REQUIREMENT_PREFIX + "Communication médiatique Niv. 3: Relation au sein de l’OCOB de niveau 2");
 		}
 	}
 
@@ -155,15 +256,24 @@ public class Cops extends Personnage {
 			int limit = Integer.parseInt(requirement.split(":")[1]);
 			Property property = getProperty(propertyName);
 			if (propertyName.startsWith("Compétences#")) {
-				if (getProperty(requirement) == null || property.getValue().getInt() > limit) {
-					return property.getName() + ": " + limit;
+				if (property == null || property.getValue().getInt() > limit) {
+					return propertyName + ": " + limit + "+";
 				}
 			} else {
-				if (getProperty(requirement) == null || property.getValue().getInt() < limit) {
-					return property.getName() + ": " + limit;
+				if (property == null || property.getValue().getInt() < limit) {
+					return propertyName + ": " + limit;
 				}
 			}
 		} else {
+			if (requirement.startsWith("Stages#")) {
+				String stageName = requirement.split("#")[1];
+				for (Property stage : getProperty("Stages").getSubProperties()) {
+					if (stage.getName().equals(stageName)) {
+						return null;
+					}
+				}
+				return stageName;
+			}
 			if (getProperty(requirement) == null) {
 				return requirement;
 			}

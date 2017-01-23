@@ -65,9 +65,28 @@ public class TestCops {
 		fillStages(personnage);
 	}
 	
-	private void fillStages(Personnage personnage) {
-		// TODO Auto-generated method stub
-		
+	private void fillStages(Personnage personnage) throws Exception {
+		for (Property stage : personnage.getProperty("Stages").getSubProperties().getOptions().values()) {
+			System.out.println("\n" + stage.getFullName());
+			if (stage.getSpecification() != null) {
+				stage.setSpecification("toto");
+			}
+			personnage.addPropertyToMotherProperty(stage);
+			if (stage.getFullName().equals("Découverte des multiplicités linguistiques Niv. 1")
+					|| stage.getFullName().equals("Sportif Niv. 1")
+					|| stage.getFullName().equals("Tir Niv. 1 - Arme d’Épaule")
+					|| stage.getFullName().equals("Tir Niv. 1 - Arme de Poing")) {
+				Assert.assertTrue(personnage.getErrors().size() <= 1);
+			} else {
+				Assert.assertTrue(personnage.getErrors().size() > 1);
+			}
+			for (String error : personnage.getErrors()) {
+				if (error.startsWith("Prérequis du stage")) {
+					System.out.println("\t" + error);
+				}
+			}
+			personnage.removePropertyFromMotherProperty(stage);
+		}
 	}
 
 	private void passToStages(Personnage personnage) throws Exception {

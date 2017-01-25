@@ -9,7 +9,7 @@ import com.mrprez.gencross.value.Value;
 public class Cops extends Personnage {
 	private final static String[] BASE_SOCIAL_COMPETENCES = new String[]{"Éloquence", "Intimidation", "Rhétorique"};
 	private final static String[] BASE_CAC_SPE = new String[]{"coups", "projections", "immobilisations"};
-	private final static String STAGE_REQUIREMENT_PREFIX = "Prérequis du stage ";
+	private final static String STAGE_REQUIREMENT_PREFIX = "Prérequis du stage: ";
 	
 	
 	public void changeCompetences(Property competence, Value oldValue){

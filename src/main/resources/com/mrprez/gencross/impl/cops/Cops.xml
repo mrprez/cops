@@ -19,7 +19,7 @@
 		<pool name="Compétences" remaining="10" total="10" toEmpty="false" />
 		<pool name="Relations" remaining="0" total="0" toEmpty="true" />
 		<pool name="Adrénaline/Ancienneté" remaining="2" total="2" toEmpty="false" />
-		<pool name="Stages" remaining="30" total="30" toEmpty="false" />
+		<pool name="Stages" remaining="20" total="20" toEmpty="false" />
 	</pointPools>
 	<properties>
 		<property editable="true" name="Nom">

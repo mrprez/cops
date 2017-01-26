@@ -1,7 +1,11 @@
 package com.mrprez.gencross.impl.cops;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.mrprez.gencross.Personnage;
 import com.mrprez.gencross.Property;
+import com.mrprez.gencross.history.MapHistoryFactory;
 import com.mrprez.gencross.history.ProportionalHistoryFactory;
 import com.mrprez.gencross.value.IntValue;
 import com.mrprez.gencross.value.Value;
@@ -85,10 +89,10 @@ public class Cops extends Personnage {
 					errors.add(STAGE_REQUIREMENT_PREFIX + stage.getName() + ": " + completeMsg);
 				}
 			}
-			if (stage.getName().equals("Communication médiatique Niv. 3")) {
+			if (stage.getName().startsWith("Communication médiatique Niv. 3")) {
 				calculateMassGuruStageRequirement();
 			}
-			if (stage.getName().equals("Contrôle des biens et des contrefaçons Niv. 2")) {
+			if (stage.getName().startsWith("Contrôle des biens et des contrefaçons Niv. 2")) {
 				calculateReceleurStageRequirement(stage);
 			}
 			if (stage.getName().startsWith("Manœuvres et mouvements Niv. 2")) {
@@ -116,14 +120,35 @@ public class Cops extends Personnage {
 				calculateKeyboardMaestro2_0(stage);
 			}
 			if (stage.getName().startsWith("Tir Niv. 1")) {
-				calculateOneRequirement("Compétences#" + stage.getSpecification() + ":6");
+				calculatePatGarrett(stage);
 			}
 			if (stage.getName().startsWith("Tir Niv. 2")) {
-				calculateOneRequirement("Compétences#" + stage.getSpecification() + ":5");
+				calculateWyattEarp(stage);
 			}
 			if (stage.getName().startsWith("Tir Niv. 3")) {
-				calculateOneRequirement("Compétences#" + stage.getName().split(" - ")[1] + ":4");
+				calculateLeeHarveyOswald(stage);
 			}
+		}
+	}
+
+	private void calculatePatGarrett(Property stage) {
+		String error = calculateOneRequirement("Compétences#" + stage.getSpecification() + ":6");
+		if (error != null) {
+			errors.add(STAGE_REQUIREMENT_PREFIX + error);
+		}
+	}
+
+	private void calculateWyattEarp(Property stage) {
+		String error = calculateOneRequirement("Compétences#" + stage.getSpecification() + ":5");
+		if (error != null) {
+			errors.add(STAGE_REQUIREMENT_PREFIX + error);
+		}
+	}
+
+	private void calculateLeeHarveyOswald(Property stage) {
+		String error = calculateOneRequirement("Compétences#" + stage.getName().split(" - ")[1] + ":4");
+		if (error != null) {
+			errors.add(STAGE_REQUIREMENT_PREFIX + error);
 		}
 	}
 
@@ -234,7 +259,7 @@ public class Cops extends Personnage {
 	private void calculateReceleurStageRequirement(Property stage) {
 		Property connaissance = getProperty("Compétences#Connaissance#" + stage.getSpecification());
 		if (connaissance == null || connaissance.getValue().getInt() > 6) {
-			errors.add(STAGE_REQUIREMENT_PREFIX + stage.getFullName() + ": Connaissance/" + stage.getSpecification() + ": 6");
+			errors.add(STAGE_REQUIREMENT_PREFIX + stage.getFullName() + ": Connaissance/" + stage.getSpecification() + ": 6+");
 		}
 	}
 
@@ -475,6 +500,61 @@ public class Cops extends Personnage {
 		getPointPools().get("Stages").setToEmpty(true);
 	}
 	
+	public void goToPhaseEnService() {
+		// Caracteristiques history factory
+		Map<Value, Integer> caracCostMap = new HashMap<Value, Integer>();
+		caracCostMap.put(new IntValue(2), 0);
+		caracCostMap.put(new IntValue(3), 14);
+		caracCostMap.put(new IntValue(4), 35);
+		caracCostMap.put(new IntValue(5), 63);
+		getProperty("Caracteristiques").setHistoryFactory(new MapHistoryFactory(caracCostMap, "Expérience"));
+
+		// Compétences history factory
+		Map<Value, Integer> compCostMap = new HashMap<Value, Integer>();
+		compCostMap.put(new IntValue(10), 0);
+		compCostMap.put(new IntValue(9), 6);
+		compCostMap.put(new IntValue(8), 8);
+		compCostMap.put(new IntValue(7), 12);
+		compCostMap.put(new IntValue(6), 18);
+		compCostMap.put(new IntValue(5), 26);
+		compCostMap.put(new IntValue(4), 36);
+		compCostMap.put(new IntValue(3), 48);
+		compCostMap.put(new IntValue(2), 62);
+		getProperty("Compétences").setHistoryFactory(new MapHistoryFactory(compCostMap, "Expérience"));
+		for (Property competence : getProperty("Compétences").getSubProperties()) {
+			if (competence.getSubProperties() != null) {
+				competence.getSubProperties().getDefaultProperty().setHistoryFactory(new MapHistoryFactory(compCostMap, "Expérience"));
+				for (Property spe : competence.getSubProperties()) {
+					spe.setHistoryFactory(new MapHistoryFactory(compCostMap, "Expérience"));
+				}
+				for (Property spe : competence.getSubProperties().getOptions().values()) {
+					spe.setHistoryFactory(new MapHistoryFactory(compCostMap, "Expérience"));
+				}
+			}
+		}
+
+		// Stages history factory
+		for (Property stage : getProperty("Stages").getSubProperties()) {
+			stage.getHistoryFactory().setPointPool("Expérience");
+		}
+		for (Property stage : getProperty("Stages").getSubProperties().getOptions().values()) {
+			stage.getHistoryFactory().setPointPool("Expérience");
+		}
+
+		// Points d'ancienneté
+		getProperty("Points d'ancienneté").setHistoryFactory(new ProportionalHistoryFactory("Expérience", 15));
+		getProperty("Points d'adrénaline").setHistoryFactory(new ProportionalHistoryFactory("Expérience", 15));
+
+		// Relations
+		Map<Value, Integer> relationCostMap = new HashMap<Value, Integer>();
+		relationCostMap.put(new IntValue(1), 4);
+		relationCostMap.put(new IntValue(2), 7);
+		relationCostMap.put(new IntValue(3), 13);
+		relationCostMap.put(new IntValue(4), 22);
+		getProperty("Relations").setHistoryFactory(new MapHistoryFactory(relationCostMap, "Expérience"));
+
+	}
+
 	public void addStage(Property stage) {
 		if (stage.getSpecification() == null && stage.getName().contains(Property.SPECIFICATION_SEPARATOR)) {
 			stage.setSpecification(stage.getName().substring(stage.getName().lastIndexOf(Property.SPECIFICATION_SEPARATOR) + Property.SPECIFICATION_SEPARATOR.length()));

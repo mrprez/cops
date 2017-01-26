@@ -63,34 +63,42 @@ public class TestCops {
 		
 		// Stages
 		fillStages(personnage);
+
+		// Pass to phase "En service"
+		passToEnService(personnage);
 	}
 	
+	private void passToEnService(Personnage personnage) throws Exception {
+		personnage.passToNextPhase();
+		Assert.assertEquals("En service", personnage.getPhase());
+	}
+
 	private void fillStages(Personnage personnage) throws Exception {
-		for (Property stage : personnage.getProperty("Stages").getSubProperties().getOptions().values()) {
-			System.out.println("\n" + stage.getFullName());
-			if (stage.getSpecification() != null) {
-				stage.setSpecification("toto");
-			}
-			personnage.addPropertyToMotherProperty(stage);
-			if (stage.getFullName().equals("Découverte des multiplicités linguistiques Niv. 1")
-					|| stage.getFullName().equals("Sportif Niv. 1")
-					|| stage.getFullName().equals("Tir Niv. 1 - Arme d’Épaule")
-					|| stage.getFullName().equals("Tir Niv. 1 - Arme de Poing")) {
-				Assert.assertTrue(personnage.getErrors().size() <= 1);
-			} else {
-				Assert.assertTrue(personnage.getErrors().size() > 1);
-			}
-			for (String error : personnage.getErrors()) {
-				if (error.startsWith("Prérequis du stage")) {
-					System.out.println("\t" + error);
-				}
-			}
-			personnage.removePropertyFromMotherProperty(stage);
-		}
+		Property stage1 = personnage.getProperty("Stages").getSubProperties().getOptions().get("Tir Niv. 1 - Arme de Poing");
+		personnage.addPropertyToMotherProperty(stage1);
+		Assert.assertEquals(1, personnage.getProperty("Stages#Tir Niv. 1 - Arme de Poing").getValue().getInt());
+
+		Property stageLevel2 = personnage.getProperty("Stages").getSubProperties().getOptions().get("Tir Niv. 2 - Arme de Poing");
+		personnage.addPropertyToMotherProperty(stageLevel2);
+		Assert.assertTrue(personnage.getErrors().contains("A la création, vous ne pouvez pas avoir de stage de niveau 2 ou 3"));
+		personnage.removePropertyFromMotherProperty(stageLevel2);
+
+		Property unvalidStage = personnage.getProperty("Stages").getSubProperties().getOptions().get("Art martial Niv. 1");
+		personnage.addPropertyToMotherProperty(unvalidStage);
+		Assert.assertTrue(personnage.getErrors().contains("Prérequis du stage: Art martial Niv. 1: Compétences#Corps à Corps: 6+"));
+		Assert.assertTrue(personnage.getErrors().contains("Prérequis du stage: Art martial Niv. 1: Caracteristiques#Carrure: 3"));
+		Assert.assertTrue(personnage.phaseFinished());
+		personnage.removePropertyFromMotherProperty(unvalidStage);
+
+		Property stage2 = personnage.getProperty("Stages").getSubProperties().getOptions().get("Relations medias Niv. 1");
+		personnage.addPropertyToMotherProperty(stage2);
+		Assert.assertTrue(personnage.getErrors().isEmpty());
+		Assert.assertTrue(personnage.phaseFinished());
 	}
 
 	private void passToStages(Personnage personnage) throws Exception {
 		personnage.passToNextPhase();
+		Assert.assertFalse(personnage.phaseFinished());
 		Assert.assertEquals("Stages", personnage.getPhase());
 		Assert.assertEquals(1, personnage.getErrors().size());
 		Assert.assertEquals("Il reste des Stages à dépenser", personnage.getErrors().get(0));
@@ -106,6 +114,7 @@ public class TestCops {
 
 	private void passToRelationsSupplementaires(Personnage personnage) throws Exception {
 		personnage.passToNextPhase();
+		Assert.assertFalse(personnage.phaseFinished());
 		Assert.assertEquals("Relations supplémentaires", personnage.getPhase());
 		Assert.assertEquals(1, personnage.getErrors().size());
 		Assert.assertEquals("Il reste des Relations à dépenser", personnage.getErrors().get(0));
@@ -121,6 +130,7 @@ public class TestCops {
 	private void passToDevenirCops(Personnage personnage) throws Exception {
 		personnage.passToNextPhase();
 		Assert.assertEquals("Devenir COPS", personnage.getPhase());
+		Assert.assertFalse(personnage.phaseFinished());
 		Assert.assertEquals(2, personnage.getErrors().size());
 		Assert.assertTrue(personnage.getErrors().contains("Il reste des Relations à dépenser"));
 		Assert.assertTrue(personnage.getErrors().contains("Il reste des Adrénaline/Ancienneté à dépenser"));
@@ -139,6 +149,7 @@ public class TestCops {
 		personnage.passToNextPhase();
 		Assert.assertEquals("Études", personnage.getPhase());
 		Assert.assertEquals(2, personnage.getErrors().size());
+		Assert.assertFalse(personnage.phaseFinished());
 		for(Property competence : personnage.getProperty("Compétences").getSubProperties()){
 			if(competence.getValue()!=null){
 				Assert.assertEquals(2, competence.getMin().getInt());
@@ -169,6 +180,7 @@ public class TestCops {
 
 	private void passToPhaseOrigineSociale(Personnage personnage) throws Exception {
 		personnage.passToNextPhase();
+		Assert.assertFalse(personnage.phaseFinished());
 		Assert.assertEquals(2, personnage.getErrors().size());
 		Assert.assertTrue(personnage.getErrors().contains("Vous avez le droit à un et un seul équipement supplémentaire"));
 		Assert.assertTrue(personnage.getErrors().contains("Il reste des Relations à dépenser"));
@@ -228,6 +240,7 @@ public class TestCops {
 	private void passToPhaseCompetence(Personnage personnage) throws Exception{
 		personnage.passToNextPhase();
 		Assert.assertEquals("Compétences", personnage.getPhase());
+		Assert.assertFalse(personnage.phaseFinished());
 		Assert.assertFalse(personnage.getProperty("Compétences#Arme Lourde").isEditable());
 		Assert.assertFalse(personnage.getProperty("Compétences#Arme Lourde").getSubProperties().isFixe());
 		Assert.assertTrue(personnage.getProperty("Compétences#Arme d’Épaule").isEditable());
@@ -259,6 +272,7 @@ public class TestCops {
 	private void passToPhaseCompetenceDeBase(Personnage personnage) throws Exception{
 		personnage.passToNextPhase();
 		Assert.assertEquals("Compétences de bases", personnage.getPhase());
+		Assert.assertFalse(personnage.phaseFinished());
 		for(Property competence : personnage.getProperty("Compétences").getSubProperties()){
 			if(BASE_SOCIAL_COMPETENCES.contains(competence.getName())){
 				Assert.assertTrue(competence.isEditable());
@@ -277,12 +291,15 @@ public class TestCops {
 	
 	private void fillCaracteristiques(Personnage personnage) throws Exception{
 		personnage.setNewValue("Caracteristiques#Carrure", 5);
+		Assert.assertEquals(35, personnage.getProperty("Points de vie").getValue().getInt());
 		personnage.setNewValue("Caracteristiques#Coordination", 5);
 		Assert.assertTrue(personnage.getErrors().contains("Vous ne pouvez avoir plus d'une Caractéristique à 5 à la création"));
-		personnage.setNewValue("Caracteristiques#Coordination", 3);
+		personnage.setNewValue("Caracteristiques#Carrure", 2);
+		Assert.assertEquals(26, personnage.getProperty("Points de vie").getValue().getInt());
 		personnage.setNewValue("Caracteristiques#Réflexe", 4);
-		Assert.assertEquals(35, personnage.getProperty("Points de vie").getValue().getInt());
 		Assert.assertEquals(-1, personnage.getProperty("Caracteristiques#Init. min").getValue().getInt());
+		personnage.setNewValue("Caracteristiques#Réflexe", 3);
+		Assert.assertEquals(0, personnage.getProperty("Caracteristiques#Init. min").getValue().getInt());
 		
 		Assert.assertTrue(personnage.getErrors().contains("Vous devez avoir autant de Langues que votre Caractéristique d'Education"));
 		Property langue1 = personnage.getProperty("Langues").getSubProperties().getDefaultProperty().clone();
@@ -296,6 +313,9 @@ public class TestCops {
 		personnage.addPropertyToMotherProperty(langue2);
 		Assert.assertFalse(personnage.getErrors().contains("Vous devez avoir autant de Langues que votre Caractéristique d'Education"));
 		
+		personnage.setNewValue("Caracteristiques#Sang froid", 3);
+		personnage.setNewValue("Caracteristiques#Charme", 3);
+
 		Assert.assertEquals(0, personnage.getPointPools().get("Caractéristiques").getRemaining());
 		Assert.assertTrue(personnage.phaseFinished());
 	}

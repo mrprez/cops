@@ -20,6 +20,7 @@
 		<pool name="Relations" remaining="0" total="0" toEmpty="true" />
 		<pool name="Adrénaline/Ancienneté" remaining="2" total="2" toEmpty="false" />
 		<pool name="Stages" remaining="20" total="20" toEmpty="false" />
+		<pool name="Expérience" remaining="0" total="0" toEmpty="false" />
 	</pointPools>
 	<properties>
 		<property editable="true" name="Nom">
@@ -673,13 +674,13 @@
 								</property>
 							</properties>
 						</propertiesList>
-						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
-							<pointPool>Relations</pointPool>
-							<args></args>
-						</historyFactory>
 					</property>
 				</defaultProperty>
 			</propertiesList>
+			<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+				<pointPool>Relations</pointPool>
+				<args></args>
+			</historyFactory>
 		</property>
 		<property name="Stages" editable="false" canBeRemoved="true">
 			<propertiesList fixe="false" open="false">
@@ -688,7 +689,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -696,7 +697,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -752,7 +753,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -760,7 +761,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -768,7 +769,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -776,7 +777,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -840,7 +841,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -872,7 +873,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -896,7 +897,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -920,7 +921,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -968,7 +969,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -992,7 +993,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1032,7 +1033,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1061,7 +1062,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1085,7 +1086,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1130,7 +1131,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1170,7 +1171,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1178,7 +1179,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1250,7 +1251,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1266,7 +1267,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1306,7 +1307,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1314,7 +1315,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1338,7 +1339,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1362,7 +1363,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1442,7 +1443,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1450,7 +1451,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1474,7 +1475,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1482,7 +1483,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1490,7 +1491,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1498,7 +1499,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1522,7 +1523,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1530,7 +1531,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1538,7 +1539,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1570,7 +1571,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1578,7 +1579,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1711,7 +1712,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1759,7 +1760,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1831,7 +1832,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1839,7 +1840,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1879,7 +1880,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1887,7 +1888,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -1924,7 +1925,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -2012,7 +2013,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -2020,7 +2021,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -2028,7 +2029,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -2036,7 +2037,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -2044,7 +2045,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -2052,7 +2053,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -2100,7 +2101,7 @@
 						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
 							<pointPool>Stages</pointPool>
 							<args>
-								<arg key="cost">20</arg>
+								<arg key="cost">25</arg>
 							</args>
 						</historyFactory>
 					</property>
@@ -2195,6 +2196,10 @@
 		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
 			<phase>Relations supplémentaires</phase>
 			<arg name="method">goToPhaseStage</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
+			<phase>Stages</phase>
+			<arg name="method">goToPhaseEnService</arg>
 		</listener>
 		
 	</passToNextPhaseListeners>

@@ -1,0 +1,3983 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<personnage name="COPS" version="1.0" gencrossVersion="1.11">
+	<phase name="En service"/>
+	<phaseList>
+		<phase name="Caractéristiques"/>
+		<phase name="Compétences de bases"/>
+		<phase name="Compétences"/>
+		<phase name="Origine sociale"/>
+		<phase name="Études"/>
+		<phase name="Devenir COPS"/>
+		<phase name="Relations supplémentaires"/>
+		<phase name="Stages"/>
+		<phase name="En service"/>
+	</phaseList>
+	<pointPools>
+		<pool name="Caractéristiques" remaining="0" total="7" toEmpty="true"/>
+		<pool name="Compétences" remaining="0" total="12" toEmpty="true"/>
+		<pool name="Relations" remaining="0" total="7" toEmpty="true"/>
+		<pool name="Adrénaline/Ancienneté" remaining="0" total="2" toEmpty="true"/>
+		<pool name="Stages" remaining="0" total="20" toEmpty="true"/>
+		<pool name="Expérience" remaining="-33" total="0" toEmpty="false"/>
+	</pointPools>
+	<properties>
+		<property name="Nom" editable="true" canBeRemoved="true">
+			<Value class="com.mrprez.gencross.value.StringValue"/>
+		</property>
+		<property name="Prénom" editable="true" canBeRemoved="true">
+			<Value class="com.mrprez.gencross.value.StringValue"/>
+		</property>
+		<property name="Surnom" editable="true" canBeRemoved="true">
+			<Value class="com.mrprez.gencross.value.StringValue"/>
+		</property>
+		<property name="Grade" editable="true" canBeRemoved="true">
+			<Value class="com.mrprez.gencross.value.IntValue" offset="1">0</Value>
+		</property>
+		<property name="Caracteristiques" editable="false" canBeRemoved="true">
+			<propertiesList fixe="true" open="false">
+				<propertyChoice/>
+				<properties>
+					<property name="Carrure" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">5</Value>
+						</max>
+					</property>
+					<property name="Charme" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">5</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">5</Value>
+						</max>
+					</property>
+					<property name="Coordination" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">5</Value>
+						</max>
+					</property>
+					<property name="Education" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">4</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">5</Value>
+						</max>
+					</property>
+					<property name="Perception" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">4</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">5</Value>
+						</max>
+					</property>
+					<property name="Réflexe" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">5</Value>
+						</max>
+					</property>
+					<property name="Init. min" editable="false" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+					</property>
+					<property name="Sang froid" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">3</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">5</Value>
+						</max>
+					</property>
+				</properties>
+			</propertiesList>
+			<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+				<pointPool>Expérience</pointPool>
+				<args>
+					<arg key="3">14</arg>
+					<arg key="2">0</arg>
+					<arg key="5">63</arg>
+					<arg key="4">35</arg>
+					<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+				</args>
+			</historyFactory>
+		</property>
+		<property name="Points de vie" editable="false" canBeRemoved="true">
+			<Value class="com.mrprez.gencross.value.IntValue" offset="1">26</Value>
+		</property>
+		<property name="Points d'adrénaline" editable="true" canBeRemoved="true">
+			<Value class="com.mrprez.gencross.value.IntValue" offset="1">0</Value>
+			<min>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">0</Value>
+			</min>
+			<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+				<pointPool>Expérience</pointPool>
+				<args>
+					<arg key="startValue">0.0</arg>
+					<arg key="factor">15.0</arg>
+				</args>
+			</historyFactory>
+		</property>
+		<property name="Points d'ancienneté" editable="true" canBeRemoved="true">
+			<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+			<min>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">0</Value>
+			</min>
+			<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+				<pointPool>Expérience</pointPool>
+				<args>
+					<arg key="startValue">0.0</arg>
+					<arg key="factor">15.0</arg>
+				</args>
+			</historyFactory>
+		</property>
+		<property name="Compétences" editable="false" canBeRemoved="true">
+			<propertiesList fixe="true" open="false">
+				<propertyChoice/>
+				<properties>
+					<property name="Arme d’Épaule" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+						</max>
+						<propertiesList fixe="true" open="true">
+							<defaultProperty>
+								<property name="" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</defaultProperty>
+							<propertyChoice>
+								<property name="fusil à lunette" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="fusil" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="fusil à pompe" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</propertyChoice>
+							<properties/>
+						</propertiesList>
+					</property>
+					<property name="Arme de Contact" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+						</max>
+						<propertiesList fixe="true" open="true">
+							<defaultProperty>
+								<property name="" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</defaultProperty>
+							<propertyChoice>
+								<property name="couteau" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="matraque" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</propertyChoice>
+							<properties/>
+						</propertiesList>
+					</property>
+					<property name="Arme de Poing" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+						</max>
+					</property>
+					<property name="Arme Lourde" editable="false" canBeRemoved="true">
+						<propertiesList fixe="false" open="true">
+							<defaultProperty>
+								<property name="" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</defaultProperty>
+							<propertyChoice>
+								<property name="mitrailleuse" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="lance-roquettes" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="lance-flammes" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</propertyChoice>
+							<properties/>
+						</propertiesList>
+					</property>
+					<property name="Athlétisme" editable="false" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+						</max>
+						<propertiesList fixe="false" open="true">
+							<defaultProperty>
+								<property name="" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</defaultProperty>
+							<propertyChoice>
+								<property name="course" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="course d'endurance" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="course de vitesse" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="épreuve de force" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="escalade" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="nage" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="saut" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</propertyChoice>
+							<properties/>
+						</propertiesList>
+					</property>
+					<property name="Bureaucratie" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+						</max>
+					</property>
+					<property name="Conduite" editable="false" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+						</max>
+						<propertiesList fixe="false" open="true">
+							<defaultProperty>
+								<property name="" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</defaultProperty>
+							<propertyChoice>
+								<property name="moto" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="camion" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="chenillé" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</propertyChoice>
+							<properties>
+								<property name="Voiture" editable="false" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</properties>
+						</propertiesList>
+					</property>
+					<property name="Connaissance" editable="false" canBeRemoved="true">
+						<propertiesList fixe="false" open="true">
+							<defaultProperty>
+								<property name="" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</defaultProperty>
+							<propertyChoice/>
+							<properties>
+								<property name="Little Tokyo" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="Mafia" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</properties>
+						</propertiesList>
+					</property>
+					<property name="Corps à Corps" editable="false" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+						</max>
+						<propertiesList fixe="false" open="true">
+							<defaultProperty>
+								<property name="" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</defaultProperty>
+							<propertyChoice>
+								<property name="coups" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="projections" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="immobilisations" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</propertyChoice>
+							<properties>
+								<property name="immobilisations" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</properties>
+						</propertiesList>
+					</property>
+					<property name="Déguisement" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						</max>
+					</property>
+					<property name="Discrétion" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+						</max>
+					</property>
+					<property name="Électronique" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						</max>
+					</property>
+					<property name="Éloquence" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">5</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">5</Value>
+						</max>
+					</property>
+					<property name="Falsification" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						</max>
+					</property>
+					<property name="Informatique" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+						</max>
+						<propertiesList fixe="true" open="true">
+							<defaultProperty>
+								<property name="" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</defaultProperty>
+							<propertyChoice>
+								<property name="piratage" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="programmation" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</propertyChoice>
+							<properties/>
+						</propertiesList>
+					</property>
+					<property name="Instinct de Flic" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+						</max>
+					</property>
+					<property name="Intimidation" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						</max>
+					</property>
+					<property name="Jeu" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						</max>
+					</property>
+					<property name="Lancer" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						</max>
+					</property>
+					<property name="Mécanique" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						</max>
+					</property>
+					<property name="Médecine" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						</max>
+						<propertiesList fixe="true" open="true">
+							<defaultProperty>
+								<property name="" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</defaultProperty>
+							<propertyChoice>
+								<property name="chirurgie" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="pharmacologie" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="médecine légale" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</propertyChoice>
+							<properties/>
+						</propertiesList>
+					</property>
+					<property name="Pilotage" editable="false" canBeRemoved="true">
+						<propertiesList fixe="false" open="true">
+							<defaultProperty>
+								<property name="" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</defaultProperty>
+							<propertyChoice>
+								<property name="avion" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="patrouilleur maritime" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="hélicoptère" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="hovercraft" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="VTOL" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</propertyChoice>
+							<properties/>
+						</propertiesList>
+					</property>
+					<property name="Premiers Secours" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+						</max>
+					</property>
+					<property name="Psychologie" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+						</max>
+					</property>
+					<property name="Rhétorique" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						</max>
+					</property>
+					<property name="Scène de Crime" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">5</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">5</Value>
+						</max>
+					</property>
+					<property name="Tir en Rafale" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+						</max>
+						<propertiesList fixe="true" open="false">
+							<defaultProperty>
+								<property name="" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</defaultProperty>
+							<propertyChoice>
+								<property name="Arme d’Épaule" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+								<property name="Arme de Poing" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+									</max>
+									<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+										<pointPool>Expérience</pointPool>
+										<args>
+											<arg key="3">48</arg>
+											<arg key="2">62</arg>
+											<arg key="10">0</arg>
+											<arg key="7">12</arg>
+											<arg key="6">18</arg>
+											<arg key="5">26</arg>
+											<arg key="4">36</arg>
+											<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+											<arg key="9">6</arg>
+											<arg key="8">8</arg>
+										</args>
+									</historyFactory>
+								</property>
+							</propertyChoice>
+							<properties/>
+						</propertiesList>
+					</property>
+				</properties>
+			</propertiesList>
+			<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+				<pointPool>Expérience</pointPool>
+				<args>
+					<arg key="3">48</arg>
+					<arg key="2">62</arg>
+					<arg key="10">0</arg>
+					<arg key="7">12</arg>
+					<arg key="6">18</arg>
+					<arg key="5">26</arg>
+					<arg key="4">36</arg>
+					<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+					<arg key="9">6</arg>
+					<arg key="8">8</arg>
+				</args>
+			</historyFactory>
+		</property>
+		<property name="Langues" editable="false" canBeRemoved="true">
+			<propertiesList fixe="false" open="true">
+				<defaultProperty>
+					<property name="" editable="false" canBeRemoved="true"/>
+				</defaultProperty>
+				<propertyChoice/>
+				<properties>
+					<property name="Anglais" editable="false" canBeRemoved="false"/>
+					<property name="Japonnais" editable="false" canBeRemoved="true"/>
+					<property name="Espagnol" editable="false" canBeRemoved="true"/>
+					<property name="Coréen" editable="false" canBeRemoved="true"/>
+				</properties>
+			</propertiesList>
+		</property>
+		<property name="Relations" editable="false" canBeRemoved="true">
+			<propertiesList fixe="false" open="true">
+				<defaultProperty>
+					<property name="" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<propertiesList fixe="true" open="false">
+							<propertyChoice/>
+							<properties>
+								<property name="Type" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.StringValue">Informateur</Value>
+									<valueChoice>
+										<Value class="com.mrprez.gencross.value.StringValue">Informateur</Value>
+										<Value class="com.mrprez.gencross.value.StringValue">Allié</Value>
+									</valueChoice>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory">
+										<pointPool/>
+										<args/>
+									</historyFactory>
+								</property>
+								<property name="Métier" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.StringValue"/>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory">
+										<pointPool/>
+										<args/>
+									</historyFactory>
+								</property>
+								<property name="Connaissances" editable="false" canBeRemoved="true">
+									<propertiesList fixe="false" open="true">
+										<defaultProperty>
+											<property name="" editable="true" canBeRemoved="true">
+												<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												<min>
+													<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												</min>
+											</property>
+										</defaultProperty>
+										<propertyChoice/>
+										<properties/>
+									</propertiesList>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory">
+										<pointPool/>
+										<args/>
+									</historyFactory>
+								</property>
+							</properties>
+						</propertiesList>
+					</property>
+				</defaultProperty>
+				<propertyChoice/>
+				<properties>
+					<property name="Hitachi FUSHINAWA" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">3</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<propertiesList fixe="true" open="false">
+							<propertyChoice/>
+							<properties>
+								<property name="Type" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.StringValue">Allié</Value>
+									<valueChoice>
+										<Value class="com.mrprez.gencross.value.StringValue">Informateur</Value>
+										<Value class="com.mrprez.gencross.value.StringValue">Allié</Value>
+									</valueChoice>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory">
+										<pointPool/>
+										<args/>
+									</historyFactory>
+								</property>
+								<property name="Métier" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.StringValue">Yakusa</Value>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory">
+										<pointPool/>
+										<args/>
+									</historyFactory>
+								</property>
+								<property name="Connaissances" editable="false" canBeRemoved="true">
+									<propertiesList fixe="false" open="true">
+										<defaultProperty>
+											<property name="" editable="true" canBeRemoved="true">
+												<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												<min>
+													<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												</min>
+											</property>
+										</defaultProperty>
+										<propertyChoice/>
+										<properties>
+											<property name="Milieu criminel" editable="true" canBeRemoved="true">
+												<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												<min>
+													<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												</min>
+											</property>
+											<property name="Cuisine japonnaise" editable="true" canBeRemoved="true">
+												<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												<min>
+													<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												</min>
+											</property>
+											<property name="Katana" editable="true" canBeRemoved="true">
+												<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												<min>
+													<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												</min>
+											</property>
+										</properties>
+									</propertiesList>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory">
+										<pointPool/>
+										<args/>
+									</historyFactory>
+								</property>
+							</properties>
+						</propertiesList>
+					</property>
+					<property name="Mlle NELLY" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<propertiesList fixe="true" open="false">
+							<propertyChoice/>
+							<properties>
+								<property name="Type" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.StringValue">Allié</Value>
+									<valueChoice>
+										<Value class="com.mrprez.gencross.value.StringValue">Informateur</Value>
+										<Value class="com.mrprez.gencross.value.StringValue">Allié</Value>
+									</valueChoice>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory">
+										<pointPool/>
+										<args/>
+									</historyFactory>
+								</property>
+								<property name="Métier" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.StringValue">Secrétaire SAD</Value>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory">
+										<pointPool/>
+										<args/>
+									</historyFactory>
+								</property>
+								<property name="Connaissances" editable="false" canBeRemoved="true">
+									<propertiesList fixe="false" open="true">
+										<defaultProperty>
+											<property name="" editable="true" canBeRemoved="true">
+												<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												<min>
+													<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												</min>
+											</property>
+										</defaultProperty>
+										<propertyChoice/>
+										<properties>
+											<property name="Bueraucratie SAD" editable="true" canBeRemoved="true">
+												<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												<min>
+													<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												</min>
+											</property>
+										</properties>
+									</propertiesList>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory">
+										<pointPool/>
+										<args/>
+									</historyFactory>
+								</property>
+							</properties>
+						</propertiesList>
+					</property>
+					<property name="Elisa MARK" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<propertiesList fixe="true" open="false">
+							<propertyChoice/>
+							<properties>
+								<property name="Type" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.StringValue">Informateur</Value>
+									<valueChoice>
+										<Value class="com.mrprez.gencross.value.StringValue">Informateur</Value>
+										<Value class="com.mrprez.gencross.value.StringValue">Allié</Value>
+									</valueChoice>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory">
+										<pointPool/>
+										<args/>
+									</historyFactory>
+								</property>
+								<property name="Métier" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.StringValue">Avocat</Value>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory">
+										<pointPool/>
+										<args/>
+									</historyFactory>
+								</property>
+								<property name="Connaissances" editable="false" canBeRemoved="true">
+									<propertiesList fixe="false" open="true">
+										<defaultProperty>
+											<property name="" editable="true" canBeRemoved="true">
+												<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												<min>
+													<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												</min>
+											</property>
+										</defaultProperty>
+										<propertyChoice/>
+										<properties>
+											<property name="Lois" editable="true" canBeRemoved="true">
+												<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												<min>
+													<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												</min>
+											</property>
+										</properties>
+									</propertiesList>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory">
+										<pointPool/>
+										<args/>
+									</historyFactory>
+								</property>
+							</properties>
+						</propertiesList>
+					</property>
+					<property name="Keisin" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<propertiesList fixe="true" open="false">
+							<propertyChoice/>
+							<properties>
+								<property name="Type" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.StringValue">Informateur</Value>
+									<valueChoice>
+										<Value class="com.mrprez.gencross.value.StringValue">Informateur</Value>
+										<Value class="com.mrprez.gencross.value.StringValue">Allié</Value>
+									</valueChoice>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory">
+										<pointPool/>
+										<args/>
+									</historyFactory>
+								</property>
+								<property name="Métier" editable="true" canBeRemoved="true">
+									<Value class="com.mrprez.gencross.value.StringValue">Vendeur Hi-Fi</Value>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory">
+										<pointPool/>
+										<args/>
+									</historyFactory>
+								</property>
+								<property name="Connaissances" editable="false" canBeRemoved="true">
+									<propertiesList fixe="false" open="true">
+										<defaultProperty>
+											<property name="" editable="true" canBeRemoved="true">
+												<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												<min>
+													<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												</min>
+											</property>
+										</defaultProperty>
+										<propertyChoice/>
+										<properties>
+											<property name="Recel" editable="true" canBeRemoved="true">
+												<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												<min>
+													<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+												</min>
+											</property>
+										</properties>
+									</propertiesList>
+									<historyFactory class="com.mrprez.gencross.history.FreeHistoryFactory">
+										<pointPool/>
+										<args/>
+									</historyFactory>
+								</property>
+							</properties>
+						</propertiesList>
+					</property>
+				</properties>
+			</propertiesList>
+			<historyFactory class="com.mrprez.gencross.history.MapHistoryFactory">
+				<pointPool>Expérience</pointPool>
+				<args>
+					<arg key="3">13</arg>
+					<arg key="2">7</arg>
+					<arg key="1">4</arg>
+					<arg key="4">22</arg>
+					<arg key="class">com.mrprez.gencross.value.IntValue</arg>
+				</args>
+			</historyFactory>
+		</property>
+		<property name="Stages" editable="false" canBeRemoved="true">
+			<propertiesList fixe="false" open="false">
+				<propertyChoice>
+					<property name="Adaptation au comportement animal Niv. 3 - Empathie animale" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Adaptation au comportement animal Niv. 3 - Psychologie animale" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Art martial Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Art martial Niv. 2 - Combat acrobatique" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Art martial Niv. 2 - Coups maîtrisés" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Art martial Niv. 2 - Enchaînement" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Art martial Niv. 2 - Maître des clés" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Art martial Niv. 2 - Souplesse" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Art martial Niv. 3 - Intouchable" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Art martial Niv. 3 - Paralysie" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Art martial Niv. 3 - Réaction éclair" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Art martial Niv. 3 - Zanshin" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Assistance médicale et premiers secours Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Assistance médicale et premiers secours Niv. 2" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Cohésion Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Cohésion Niv. 2 - Paternaliste" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Cohésion Niv. 2 - Carriériste" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Combat urbain Niv. 2 - Téméraire" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Combat urbain Niv. 2 - Vengeur Masqué" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Combat urbain Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Combat de localité Niv. 1 - Planification" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Combat de localité Niv. 1 - Mouvement tactique" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Combat de localité Niv. 2" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Combat de localité Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Commando Niv. 2 - Hyper réactif" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Commando Niv. 2 - Interception" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Commando Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Communication médiatique Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Communication médiatique Niv. 2" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Communication médiatique Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Complicité canine Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Complicité canine Niv. 2 - Chien démineur" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Complicité canine Niv. 2 - Chien renifleur" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Complicité canine Niv. 2 - Chien de garde" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Complicité canine Niv. 2 - Chien secouriste" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Complicité canine Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Conduite Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Conduite Niv. 2" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Conduite Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Conduite en Milieu aqueux Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Conduite en Milieu aqueux Niv. 2" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Conduite moto Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Conduite moto Niv. 2" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Conduite moto Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Contrôle des biens et des contrefaçons Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Contrôle des biens et des contrefaçons Niv. 2" editable="true" canBeRemoved="true" specification="">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="startValue">0.0</arg>
+								<arg key="factor">15.0</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Contrôle des biens et des contrefaçons Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Criminalistique Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Criminalistique Niv. 2" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Criminalistique Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Découverte des multiplicités linguistiques Niv. 1" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="startValue">0.0</arg>
+								<arg key="factor">10.0</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Déminage Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Déminage Niv. 2 - Fil bleu/fil rouge" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Déminage Niv. 2 - Câblé" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Déminage Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Frappe Niv. 1" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">3</Value>
+						</max>
+						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="startValue">0.0</arg>
+								<arg key="factor">10.0</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Frappe Niv. 2 - Endurance" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Frappe Niv. 2 - Solide comme l’acier" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Frappe Niv. 3 - Coup de coude" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Frappe Niv. 3 - Uppercut" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Géopolitique globale Niv. 1" editable="true" canBeRemoved="true" specification="">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Gestion des foules Niv. 1" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">3</Value>
+						</max>
+						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="startValue">0.0</arg>
+								<arg key="factor">10.0</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Gestion des mineurs Niv. 1 - Père fouettard" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Gestion des mineurs Niv. 1 - El Professor" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Gestion des mineurs Niv. 1 - Disney Channel" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Gestion des procédures de communication au sein du LAPD Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Gestion des procédures de communication au sein du LAPD Niv. 2" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Gestion des procédures de communication au sein du LAPD Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Infiltration Niv. 2" editable="true" canBeRemoved="true" specification="">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Infiltration Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Législation et droit du citoyen Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Législation et droit du citoyen Niv. 2 - Accusé, levez-vous!" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Législation et droit du citoyen Niv. 2 - Présomption de culpabilité" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Législation et droit du citoyen Niv. 2 - I am the law" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Législation et droit du citoyen Niv. 3 - Présomption d’innocence" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Législation et droit du citoyen Niv. 3 - Loi [Nom de l’officier]" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Lutte anti-drogue (DEA) Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Lutte anti-drogue (DEA) Niv. 2" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Lutte anti-drogue (DEA) Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Lutte anti-drogue (NADIV) Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Lutte anti-drogue (NADIV) Niv. 2" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Lutte anti-drogue (NADIV) Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Manœuvres et mouvements Niv. 1 - SWAT Dance" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Manœuvres et mouvements Niv. 1 - Robocop" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Manœuvres et mouvements Niv. 1 - Ed’ Scissorhands" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Manœuvres et mouvements Niv. 1 - Mad Max Style" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Manœuvres et mouvements Niv. 1 - Gladiator" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Manœuvres et mouvements Niv. 2 - SWAT Style" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Manœuvres et mouvements Niv. 2 - RISQ Style" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Mécanique Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Menottage Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Négociation Niv. 3 - Empathie" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Négociation Niv. 3 - Sixième sens" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Partenariat Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Partenariat Niv. 2" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Partenariat Niv. 3 - Furie" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Partenariat Niv. 3 - Télépathie" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Partenariat Niv. 3 - Double Dragon" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Partenariat Niv. 3 - Relique" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Pilotage et intervention en milieu urbain Niv. 2 - hélicoptère" editable="true" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Pilotage et intervention en milieu urbain Niv. 2 - VTOL" editable="true" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Pilotage et intervention en milieu urbain Niv. 3 - Interception" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Pilotage et intervention en milieu urbain Niv. 3 - Crash test" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Pilotage et intervention en milieu urbain Niv. 3 - Top Gun Style" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Protection des personnalités et des biens publics Niv. 1" editable="true" canBeRemoved="true" specification="">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Protection des personnalités et des biens publics Niv. 2 - Anodin" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Protection des personnalités et des biens publics Niv. 2 - Physionomiste" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Protection des personnalités et des biens publics Niv. 3 - Résistance au sommeil" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Protection des personnalités et des biens publics Niv. 3 - Sacrifice" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Psychologie criminelle Niv. 2" editable="false" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</max>
+						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="startValue">0.0</arg>
+								<arg key="factor">15.0</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Relations medias Niv. 1" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="startValue">0.0</arg>
+								<arg key="factor">10.0</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Ressources humaines Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Sensibilisation a la vie en milieu confine Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Sensibilisation culturelle Niv. 1" editable="true" canBeRemoved="true" specification="">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Sensibilisation culturelle Niv. 2" editable="true" canBeRemoved="true" specification="">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</max>
+						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="startValue">0.0</arg>
+								<arg key="factor">15.0</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Space Cops Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Space Cops Niv. 2 - Moonwalker" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Space Cops Niv. 2 - Astropilot" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Space Cops Niv. 2 - Space Marine" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Sport extrême Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Sport extrême Niv. 2 - Yamakasi" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Sport extrême Niv. 2 - Casse-cou" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Sport extrême Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Sportif Niv. 1" editable="true" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+						</max>
+						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="startValue">0.0</arg>
+								<arg key="factor">10.0</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Survie Niv. 1 - Sens de l’orientation" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Survie Niv. 1 - Sens du temps" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Survie Niv. 2" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Survie Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technique d`interrogatoire Niv. 1 - Intimidation" editable="true" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technique d`interrogatoire Niv. 1 - Éloquence" editable="true" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technique d`interrogatoire Niv. 1 - Rhétorique" editable="true" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technique d`interrogatoire Niv. 2" editable="true" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technique de l`informatique Niv. 1 - LAPD Software" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technique de l`informatique Niv. 1 - Google Geek" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technique de l`informatique Niv. 2 - Scanner" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technique de l`informatique Niv. 2 - Scan FaceBook Master" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technique de l`informatique Niv. 3 - Trojan" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technique de l`informatique Niv. 3 - Big Brother" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technologie de Niv. 1" editable="false" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="startValue">0.0</arg>
+								<arg key="factor">10.0</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technologie de Niv. 2 - Barney Collier - expertise Sécurité" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technologie de Niv. 2 - Q - expertise Customisation" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technologie de Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technologie de surveillance Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technologie de surveillance Niv. 2" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Tir Niv. 1 - Arme d’Épaule" editable="false" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">3</Value>
+						</max>
+						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="startValue">0.0</arg>
+								<arg key="factor">10.0</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Tir Niv. 1 - Arme de Poing" editable="false" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">3</Value>
+						</max>
+						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="startValue">0.0</arg>
+								<arg key="factor">10.0</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Tir Niv. 2 - Arme d’Épaule" editable="false" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">3</Value>
+						</max>
+						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="startValue">0.0</arg>
+								<arg key="factor">15.0</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Tir Niv. 2 - Arme de Poing" editable="false" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">3</Value>
+						</max>
+						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="startValue">0.0</arg>
+								<arg key="factor">15.0</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Tir Niv. 3 - Arme d’Épaule - Tir rapide" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Tir Niv. 3 - Arme d’Épaule - Point faible" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Tir Niv. 3 - Arme d’Épaule - Sniper" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Tir Niv. 3 - Arme de Poing - Tir rapide" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Tir Niv. 3 - Arme de Poing - Point faible" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Tir Niv. 3 - Arme de Poing - Sniper" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Tonfa Niv. 1" editable="false" canBeRemoved="true">
+						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						<min>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+						</min>
+						<max>
+							<Value class="com.mrprez.gencross.value.IntValue" offset="1">3</Value>
+						</max>
+						<historyFactory class="com.mrprez.gencross.history.ProportionalHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="startValue">0.0</arg>
+								<arg key="factor">10.0</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Udu Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Udu Niv. 2 - Navy Seal" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Udu Niv. 2 - Jacques Maillot" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Udu Niv. 3" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">25</arg>
+							</args>
+						</historyFactory>
+					</property>
+				</propertyChoice>
+				<properties>
+					<property name="Criminalistique Niv. 1" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Technique d`interrogatoire Niv. 1" editable="true" canBeRemoved="true" specification="Éloquence">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">10</arg>
+							</args>
+						</historyFactory>
+					</property>
+					<property name="Criminalistique Niv. 2" editable="false" canBeRemoved="true">
+						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
+							<pointPool>Expérience</pointPool>
+							<args>
+								<arg key="cost">15</arg>
+							</args>
+						</historyFactory>
+					</property>
+				</properties>
+			</propertiesList>
+		</property>
+		<property name="Equipement" editable="false" canBeRemoved="true">
+			<propertiesList fixe="false" open="true">
+				<defaultProperty>
+					<property name="" editable="false" canBeRemoved="true"/>
+				</defaultProperty>
+				<propertyChoice/>
+				<properties>
+					<property name="Katana" editable="false" canBeRemoved="true"/>
+				</properties>
+			</propertiesList>
+		</property>
+	</properties>
+	<beforeChangeValueListeners>
+		<listener class="com.mrprez.gencross.listener.custom.CustomBeforeChangeValueListener">
+			<pattern>Compétences#[^#]*</pattern>
+			<arg name="method">checkCompetences</arg>
+		</listener>
+	</beforeChangeValueListeners>
+	<afterChangeValueListeners>
+		<listener class="com.mrprez.gencross.listener.custom.CustomAfterChangeValueListener">
+			<pattern>Compétences#[^#]*</pattern>
+			<arg name="method">changeCompetences</arg>
+		</listener>
+	</afterChangeValueListeners>
+	<beforeAddPropertyListeners/>
+	<afterAddPropertyListeners>
+		<listener class="com.mrprez.gencross.listener.custom.CustomAfterAddPropertyListener">
+			<pattern>Stages#[^#]*</pattern>
+			<arg name="method">addStage</arg>
+		</listener>
+	</afterAddPropertyListeners>
+	<beforeDeletePropertyListeners/>
+	<afterDeletePropertyListeners/>
+	<passToNextPhaseListeners>
+		<listener class="com.mrprez.gencross.listener.impl.EditableListener">
+			<phase>Caractéristiques</phase>
+			<arg name="propertyName">Compétences#Éloquence</arg>
+			<arg name="editable">true</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.impl.EditableListener">
+			<phase>Caractéristiques</phase>
+			<arg name="propertyName">Compétences#Intimidation</arg>
+			<arg name="editable">true</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.impl.EditableListener">
+			<phase>Caractéristiques</phase>
+			<arg name="propertyName">Compétences#Rhétorique</arg>
+			<arg name="editable">true</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.impl.EditableListener">
+			<phase>Caractéristiques</phase>
+			<arg name="pattern">Compétences#Corps à corps.*</arg>
+			<arg name="editable">true</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.impl.ToEmptyListener">
+			<phase>Compétences de bases</phase>
+			<arg name="toEmpty">true</arg>
+			<arg name="pointPool">Compétences</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.impl.cops.SetMaxListener">
+			<phase>Compétences de bases</phase>
+			<arg name="pattern">Compétences#.*</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
+			<phase>Compétences de bases</phase>
+			<arg name="method">goToPhaseCompetence</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
+			<phase>Compétences</phase>
+			<arg name="method">goToPhaseOrigineSociale</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
+			<phase>Origine sociale</phase>
+			<arg name="method">goToPhaseEtude</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
+			<phase>Études</phase>
+			<arg name="method">goToPhaseDevenirCops</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
+			<phase>Devenir COPS</phase>
+			<arg name="method">goToPhaseRelationSupplementaire</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
+			<phase>Relations supplémentaires</phase>
+			<arg name="method">goToPhaseStage</arg>
+		</listener>
+		<listener class="com.mrprez.gencross.listener.custom.CustomPassToNextPhaseListener">
+			<phase>Stages</phase>
+			<arg name="method">goToPhaseEnService</arg>
+		</listener>
+	</passToNextPhaseListeners>
+	<formulas>
+		<formula>Caracteristiques#Init. min=3.0- #Caracteristiques#Réflexe# </formula>
+		<formula>Points de vie= #Caracteristiques#Carrure# *3.0+20.0</formula>
+	</formulas>
+	<history>
+		<historyItem action="2">
+			<absoluteName>Caracteristiques#Charme</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">5</Value>
+			</newValue>
+			<date>1485509066928</date>
+			<phase>Caractéristiques</phase>
+			<pointPool>Caractéristiques</pointPool>
+			<cost>3</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Caracteristiques#Education</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">4</Value>
+			</newValue>
+			<date>1485509070377</date>
+			<phase>Caractéristiques</phase>
+			<pointPool>Caractéristiques</pointPool>
+			<cost>2</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Caracteristiques#Perception</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">4</Value>
+			</newValue>
+			<date>1485509075565</date>
+			<phase>Caractéristiques</phase>
+			<pointPool>Caractéristiques</pointPool>
+			<cost>2</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Langues#Japonnais</absoluteName>
+			<date>1485509091444</date>
+			<phase>Caractéristiques</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Langues#Espagnol</absoluteName>
+			<date>1485509096182</date>
+			<phase>Caractéristiques</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Langues#Coréen</absoluteName>
+			<date>1485509102350</date>
+			<phase>Caractéristiques</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Compétences#Éloquence</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+			</newValue>
+			<date>1485509111111</date>
+			<phase>Compétences de bases</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Compétences#Intimidation</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+			</newValue>
+			<date>1485509113567</date>
+			<phase>Compétences de bases</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Compétences#Intimidation</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+			</newValue>
+			<date>1485509116481</date>
+			<phase>Compétences de bases</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Compétences#Corps à Corps#immobilisations</absoluteName>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+			</newValue>
+			<date>1485509121833</date>
+			<phase>Compétences de bases</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Compétences#Corps à Corps#immobilisations</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+			</newValue>
+			<date>1485509124069</date>
+			<phase>Compétences de bases</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Compétences#Éloquence</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">5</Value>
+			</newValue>
+			<date>1485509134312</date>
+			<phase>Compétences</phase>
+			<pointPool>Compétences</pointPool>
+			<cost>2</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Compétences#Scène de Crime</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">7</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">5</Value>
+			</newValue>
+			<date>1485509143006</date>
+			<phase>Compétences</phase>
+			<pointPool>Compétences</pointPool>
+			<cost>2</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Compétences#Psychologie</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+			</newValue>
+			<date>1485509145712</date>
+			<phase>Compétences</phase>
+			<pointPool>Compétences</pointPool>
+			<cost>2</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Compétences#Connaissance#Little Tokyo</absoluteName>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+			</newValue>
+			<date>1485509156873</date>
+			<phase>Compétences</phase>
+			<pointPool>Compétences</pointPool>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Compétences#Connaissance#Little Tokyo</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+			</newValue>
+			<date>1485509159629</date>
+			<phase>Compétences</phase>
+			<pointPool>Compétences</pointPool>
+			<cost>2</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Compétences#Connaissance#Mafia</absoluteName>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+			</newValue>
+			<date>1485509164505</date>
+			<phase>Compétences</phase>
+			<pointPool>Compétences</pointPool>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Compétences#Connaissance#Mafia</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">10</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+			</newValue>
+			<date>1485509166717</date>
+			<phase>Compétences</phase>
+			<pointPool>Compétences</pointPool>
+			<cost>1</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Compétences#Instinct de Flic</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">9</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+			</newValue>
+			<date>1485509301797</date>
+			<phase>Compétences</phase>
+			<pointPool>Compétences</pointPool>
+			<cost>1</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Relations#Hitachi FUSHINAWA</absoluteName>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+			</newValue>
+			<date>1485510689474</date>
+			<phase>Origine sociale</phase>
+			<pointPool>Relations</pointPool>
+			<cost>1</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Relations#Hitachi FUSHINAWA</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">3</Value>
+			</newValue>
+			<date>1485510693459</date>
+			<phase>Origine sociale</phase>
+			<pointPool>Relations</pointPool>
+			<cost>2</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Relations#Hitachi FUSHINAWA#Type</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.StringValue">Informateur</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.StringValue">Allié</Value>
+			</newValue>
+			<date>1485510698484</date>
+			<phase>Origine sociale</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Relations#Hitachi FUSHINAWA#Métier</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.StringValue"/>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.StringValue">Yakusa</Value>
+			</newValue>
+			<date>1485510704484</date>
+			<phase>Origine sociale</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Relations#Hitachi FUSHINAWA#Connaissances#Milieu criminel</absoluteName>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+			</newValue>
+			<date>1485510730450</date>
+			<phase>Origine sociale</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Relations#Hitachi FUSHINAWA#Connaissances#Cuisine japonnaise</absoluteName>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+			</newValue>
+			<date>1485510737378</date>
+			<phase>Origine sociale</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Relations#Hitachi FUSHINAWA#Connaissances#Katana</absoluteName>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+			</newValue>
+			<date>1485510742776</date>
+			<phase>Origine sociale</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Relations#Hitachi FUSHINAWA</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">3</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+			</newValue>
+			<date>1485510755947</date>
+			<phase>Origine sociale</phase>
+			<pointPool>Relations</pointPool>
+			<cost>-1</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Equipement#Katana</absoluteName>
+			<date>1485510761776</date>
+			<phase>Origine sociale</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Compétences#Psychologie</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">8</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">6</Value>
+			</newValue>
+			<date>1485510811913</date>
+			<phase>Études</phase>
+			<pointPool>Compétences</pointPool>
+			<cost>2</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Relations#Hitachi FUSHINAWA</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">3</Value>
+			</newValue>
+			<date>1485510825171</date>
+			<phase>Études</phase>
+			<pointPool>Relations</pointPool>
+			<cost>1</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Relations#Mlle NELLY</absoluteName>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+			</newValue>
+			<date>1485511330000</date>
+			<phase>Devenir COPS</phase>
+			<pointPool>Relations</pointPool>
+			<cost>1</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Relations#Mlle NELLY#Type</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.StringValue">Informateur</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.StringValue">Allié</Value>
+			</newValue>
+			<date>1485511334750</date>
+			<phase>Devenir COPS</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Relations#Mlle NELLY#Connaissances#Bueraucratie SAD</absoluteName>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+			</newValue>
+			<date>1485511401496</date>
+			<phase>Devenir COPS</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Relations#Elisa MARK</absoluteName>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+			</newValue>
+			<date>1485511680807</date>
+			<phase>Devenir COPS</phase>
+			<pointPool>Relations</pointPool>
+			<cost>1</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Relations#Elisa MARK#Métier</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.StringValue"/>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.StringValue">Avocat</Value>
+			</newValue>
+			<date>1485511687214</date>
+			<phase>Devenir COPS</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Relations#Mlle NELLY#Métier</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.StringValue"/>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.StringValue">Secrétaire SAD</Value>
+			</newValue>
+			<date>1485511697518</date>
+			<phase>Devenir COPS</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Relations#Elisa MARK#Connaissances#Lois</absoluteName>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+			</newValue>
+			<date>1485511711403</date>
+			<phase>Devenir COPS</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Points d'ancienneté</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">0</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+			</newValue>
+			<date>1485511723327</date>
+			<phase>Devenir COPS</phase>
+			<pointPool>Adrénaline/Ancienneté</pointPool>
+			<cost>2</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Relations#Mlle NELLY</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+			</newValue>
+			<date>1485511739908</date>
+			<phase>Relations supplémentaires</phase>
+			<pointPool>Relations</pointPool>
+			<cost>1</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Relations#Elisa MARK</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+			</newValue>
+			<date>1485511745355</date>
+			<phase>Relations supplémentaires</phase>
+			<pointPool>Relations</pointPool>
+			<cost>1</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Stages#Criminalistique Niv. 1</absoluteName>
+			<date>1485511802292</date>
+			<phase>Stages</phase>
+			<pointPool>Stages</pointPool>
+			<cost>10</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Stages#Technique d`interrogatoire Niv. 1 - Éloquence</absoluteName>
+			<date>1485511858992</date>
+			<phase>Stages</phase>
+			<pointPool>Stages</pointPool>
+			<cost>10</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Caracteristiques#Sang froid</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">2</Value>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">3</Value>
+			</newValue>
+			<date>1485511978476</date>
+			<phase>En service</phase>
+			<pointPool>Expérience</pointPool>
+			<cost>14</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Stages#Criminalistique Niv. 2</absoluteName>
+			<date>1485512123565</date>
+			<phase>En service</phase>
+			<pointPool>Expérience</pointPool>
+			<cost>15</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Relations#Keisin</absoluteName>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+			</newValue>
+			<date>1485512219645</date>
+			<phase>En service</phase>
+			<pointPool>Expérience</pointPool>
+			<cost>4</cost>
+		</historyItem>
+		<historyItem action="2">
+			<absoluteName>Relations#Keisin#Métier</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.StringValue"/>
+			</oldValue>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.StringValue">Vendeur Hi-Fi</Value>
+			</newValue>
+			<date>1485512227823</date>
+			<phase>En service</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Relations#Keisin#Connaissances#Recel</absoluteName>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+			</newValue>
+			<date>1485512234819</date>
+			<phase>En service</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="1">
+			<absoluteName>Relations#Keisin#Connaissances#Informatique</absoluteName>
+			<newValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+			</newValue>
+			<date>1485512241000</date>
+			<phase>En service</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+		<historyItem action="3">
+			<absoluteName>Relations#Keisin#Connaissances#Informatique</absoluteName>
+			<oldValue>
+				<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
+			</oldValue>
+			<date>1485512260595</date>
+			<phase>En service</phase>
+			<pointPool/>
+			<cost>0</cost>
+		</historyItem>
+	</history>
+</personnage>

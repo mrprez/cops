@@ -1889,54 +1889,6 @@
 							</args>
 						</historyFactory>
 					</property>
-					<property name="Techniques de l'informatique Niv. 1 - LAPD Software" editable="false" canBeRemoved="true">
-						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
-							<pointPool>Stages</pointPool>
-							<args>
-								<arg key="cost">10</arg>
-							</args>
-						</historyFactory>
-					</property>
-					<property name="Techniques de l'informatique Niv. 1 - Google Geek" editable="false" canBeRemoved="true">
-						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
-							<pointPool>Stages</pointPool>
-							<args>
-								<arg key="cost">10</arg>
-							</args>
-						</historyFactory>
-					</property>
-					<property name="Techniques de l'informatique Niv. 2 - Scanner (Informatique [technique] 5+ et capacité LAPD software obligatoires)" editable="false" canBeRemoved="true">
-						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
-							<pointPool>Stages</pointPool>
-							<args>
-								<arg key="cost">15</arg>
-							</args>
-						</historyFactory>
-					</property>
-					<property name="Techniques de l'informatique Niv. 2 - Scan FaceBook Master (Informatique [utilisateurs] 5+ et capacité Google Geek obligatoire)" editable="false" canBeRemoved="true">
-						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
-							<pointPool>Stages</pointPool>
-							<args>
-								<arg key="cost">15</arg>
-							</args>
-						</historyFactory>
-					</property>
-					<property name="Techniques de l'informatique Niv. 3 - Trojan (Informatique [technique] 4+ et capacité Scanner obligatoire)" editable="false" canBeRemoved="true">
-						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
-							<pointPool>Stages</pointPool>
-							<args>
-								<arg key="cost">25</arg>
-							</args>
-						</historyFactory>
-					</property>
-					<property name="Techniques de l'informatique Niv. 3 - Big Brother (spécialité utilisateur 4+ et capacité FaceBook Master obligatoire)" editable="false" canBeRemoved="true">
-						<historyFactory class="com.mrprez.gencross.history.ConstantHistoryFactory">
-							<pointPool>Stages</pointPool>
-							<args>
-								<arg key="cost">25</arg>
-							</args>
-						</historyFactory>
-					</property>
 					<property name="Technologie de Niv. 1" editable="false" canBeRemoved="true">
 						<Value class="com.mrprez.gencross.value.IntValue" offset="1">1</Value>
 						<min>

@@ -240,13 +240,58 @@
 						</propertiesList>
 					</property>
 					<property name="Athlétisme" editable="false">
-						<Value class="com.mrprez.gencross.value.IntValue">10</Value>
-						<min>
-							<Value class="com.mrprez.gencross.value.IntValue">8</Value>
-						</min>
-						<max>
-							<Value class="com.mrprez.gencross.value.IntValue">10</Value>
-						</max>
+						<Value class="com.mrprez.gencross.value.IntValue">7</Value>
+						<propertiesList fixe="true" open="true">
+							<properties></properties>
+							<propertyChoice>
+								<property name="course" editable="true">
+									<Value class="com.mrprez.gencross.value.IntValue">7</Value>
+									<min><Value class="com.mrprez.gencross.value.IntValue">5</Value></min>
+									<max><Value class="com.mrprez.gencross.value.IntValue">7</Value></max>
+								</property>
+								<property name="course d'endurance" editable="true">
+									<Value class="com.mrprez.gencross.value.IntValue">7</Value>
+									<min><Value class="com.mrprez.gencross.value.IntValue">5</Value></min>
+									<max><Value class="com.mrprez.gencross.value.IntValue">7</Value></max>
+								</property>
+								<property name="course de vitesse" editable="true">
+									<Value class="com.mrprez.gencross.value.IntValue">7</Value>
+									<min><Value class="com.mrprez.gencross.value.IntValue">5</Value></min>
+									<max><Value class="com.mrprez.gencross.value.IntValue">7</Value></max>
+								</property>
+								<property name="épreuve de force" editable="true">
+									<Value class="com.mrprez.gencross.value.IntValue">7</Value>
+									<min><Value class="com.mrprez.gencross.value.IntValue">5</Value></min>
+									<max><Value class="com.mrprez.gencross.value.IntValue">7</Value></max>
+								</property>
+								<property name="escalade" editable="true">
+									<Value class="com.mrprez.gencross.value.IntValue">7</Value>
+									<min><Value class="com.mrprez.gencross.value.IntValue">5</Value></min>
+									<max><Value class="com.mrprez.gencross.value.IntValue">7</Value></max>
+								</property>
+								<property name="nage" editable="true">
+									<Value class="com.mrprez.gencross.value.IntValue">7</Value>
+									<min><Value class="com.mrprez.gencross.value.IntValue">5</Value></min>
+									<max><Value class="com.mrprez.gencross.value.IntValue">7</Value></max>
+								</property>
+								<property name="saut" editable="true">
+									<Value class="com.mrprez.gencross.value.IntValue">7</Value>
+									<min><Value class="com.mrprez.gencross.value.IntValue">5</Value></min>
+									<max><Value class="com.mrprez.gencross.value.IntValue">7</Value></max>
+								</property>
+							</propertyChoice>
+							<defaultProperty>
+								<property name="" editable="true">
+									<Value class="com.mrprez.gencross.value.IntValue">7</Value>
+									<min>
+										<Value class="com.mrprez.gencross.value.IntValue">5</Value>
+									</min>
+									<max>
+										<Value class="com.mrprez.gencross.value.IntValue">7</Value>
+									</max>
+								</property>
+							</defaultProperty>
+						</propertiesList>
 					</property>
 					<property name="Bureaucratie" editable="false">
 						<Value class="com.mrprez.gencross.value.IntValue">8</Value>
@@ -560,12 +605,12 @@
 						</propertiesList>
 					</property>
 					<property name="Premiers Secours" editable="false">
-						<Value class="com.mrprez.gencross.value.IntValue">10</Value>
+						<Value class="com.mrprez.gencross.value.IntValue">8</Value>
 						<min>
-							<Value class="com.mrprez.gencross.value.IntValue">8</Value>
+							<Value class="com.mrprez.gencross.value.IntValue">6</Value>
 						</min>
 						<max>
-							<Value class="com.mrprez.gencross.value.IntValue">10</Value>
+							<Value class="com.mrprez.gencross.value.IntValue">8</Value>
 						</max>
 					</property>
 					<property name="Psychologie" editable="false">
@@ -587,12 +632,12 @@
 						</max>
 					</property>
 					<property name="Scène de Crime" editable="false">
-						<Value class="com.mrprez.gencross.value.IntValue">10</Value>
+						<Value class="com.mrprez.gencross.value.IntValue">7</Value>
 						<min>
-							<Value class="com.mrprez.gencross.value.IntValue">8</Value>
+							<Value class="com.mrprez.gencross.value.IntValue">5</Value>
 						</min>
 						<max>
-							<Value class="com.mrprez.gencross.value.IntValue">10</Value>
+							<Value class="com.mrprez.gencross.value.IntValue">7</Value>
 						</max>
 					</property>
 					<property name="Tir en Rafale" editable="false">

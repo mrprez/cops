@@ -4,7 +4,7 @@
 	<entry key="genCross.plugin.name">COPS</entry>
 	<entry key="genCross.plugin.className">com.mrprez.gencross.impl.cops.Cops</entry>
 	<entry key="genCross.plugin.gcrFileName">com/mrprez/gencross/impl/cops/Cops.gcr</entry>
-	<entry key="genCross.plugin.version">1.0</entry>
+	<entry key="genCross.plugin.version">1.1</entry>
 	<entry key="genCross.plugin.appendixFileName">com/mrprez/gencross/impl/cops/Cops.properties</entry>
 </properties>
 

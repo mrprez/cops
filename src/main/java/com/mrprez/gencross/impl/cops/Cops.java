@@ -439,6 +439,10 @@ public class Cops extends Personnage {
 				if(competence.getSubProperties()!=null && competence.getValue()!=null && competence.getValue().equals(competence.getSubProperties().getDefaultProperty().getValue())){
 					competence.setEditable(false);
 					competence.getSubProperties().setFixe(false);
+					for (Property spe : competence.getSubProperties()) {
+						spe.setEditable(true);
+						spe.setMin(new IntValue(spe.getValue().getInt() - 2));
+					}
 				}
 			}else{
 				competence.getSubProperties().setFixe(false);

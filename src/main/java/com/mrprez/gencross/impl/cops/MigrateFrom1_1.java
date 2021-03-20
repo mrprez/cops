@@ -3,7 +3,6 @@ package com.mrprez.gencross.impl.cops;
 import com.mrprez.gencross.Version;
 import com.mrprez.gencross.migration.MigrationPersonnage;
 import com.mrprez.gencross.migration.Migrator;
-import com.mrprez.gencross.value.IntValue;
 
 public class MigrateFrom1_1 implements Migrator {
 
